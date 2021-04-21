@@ -28,6 +28,11 @@
  >   * What problem you anticipate encountering when implementing your project that you will solve using the design pattern
  >   * Why the chosen design pattern will lead to a good solution to that problem
  > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
+ 
+2. The language we plan to use is C++. In this high level language, we will create a console interface in which the client has the ability to input commands from the keyboard to utilize the system while also displaying the inputs on screen.
+
+4. The two design patterns that we plan to use are the Composite and Strategy pattern.
+We are going to use the composite pattern because it would be easier to add new components if we want to implement and improve our original system. Given that the design pattern is very flexible, we will be able to create both primitive and complex objects for our classes (class hierarchies) in an ideal, organized way. The feature that we want to implement with it is the display system for both the different kinds of tasks (schedule and task lists). A problem that we anticipate encountering while working on our project that the composite pattern will solve is disorganization. We can create a class of folders that essentially holds all of the created schedules that are made.
 
 We will also be using the strategy design pattern to let the program determine at runtime which class/function to use. This way, based on user choices it can be determined during runtime which classes will be used to fulfill a job the user requests. The feature we will implement with this design pattern is printing out the user’s data. Since each user can have lots of different categories of data in their task scheduler account such as the type of task (professional, academic, personal, etc), the task due date, title, description, among others, the strategy pattern can determine during runtime what classes need to be used to display the data the user wants. The problem we can face is having too much code in displaying various types of data, and the strategy pattern can help with simplifying the code. 
 
