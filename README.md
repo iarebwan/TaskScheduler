@@ -2,7 +2,7 @@
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Task Scheduler
- > Authors: [Sumit Gupta](https://github.com/sumitgupta314) [Jordan Sam](https://github.com/Jsam88) [Benson Wan](https://github.com/iarebwan)
+ > Authors: [Sumit Gupta](https://github.com/sumitgupta314), [Jordan Sam](https://github.com/Jsam88), [Benson Wan](https://github.com/iarebwan)
  
  > You will be forming a group of **THREE** students and working on an interesting project. A list of proposed project ideas that have been successful in previous quarters is given in the project specifications link on iLearn. You can select an idea from the list, start thinking about the features you will implement, what design patterns can help you implement them, and why. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal. Your project needs to implement two design patterns.The project work should be divided almost equally among team members and each member is expected to work on at least one design pattern (more than one partner may work on a pattern) and some of its test cases. You can of course help each other, but it needs to be clear who will be responsible for which patterns and for which features.
  
@@ -18,7 +18,7 @@
 ## Project Description
  > * This project is important to us because we believe it would be fun and useful to create a program that will benefit people in their everyday lives. It also has the potential to be used by a large population of people who would like to create a schedule to keep themselves more organized. Before someone makes the mistake of double booking themselves and failing to properly manage their time, they will now have the chance to prevent that. Not only will it help us as people to become more organized, but we will also utilize new strategies and skills learned from this CS100 course.
  > * Languages/Tools/Technologies:
- >   * [C++](https://www.cplusplus.com/) - In this middle level language, we will create a console interface in which the client has the ability to input commands from the keyboard to utilize the system while also displaying the inputs on screen.
+ >   * [C++](https://www.cplusplus.com/) - Using this middle level language, we will create a console interface in which the client has the ability to input commands from the keyboard to utilize the system while also displaying the inputs on screen.
  >   * [CMake](https://cmake.org/) - We will use CMake for build automation and compiling our program.
  >   * [Git](https://git-scm.com/) - We will use Git as the version control tool to coordinate work, keep track of changes in our code, and keep our project up to date. 
  >   * [Valgrind](https://valgrind.org/) - We will use the Valgrind framework to construct dyanmic analysis tools to help us with memory debugging and detecting memory leaks.
@@ -26,8 +26,6 @@
  > * The two design patterns that we plan to use are the Composite and Strategy pattern.
  >   * We are going to use the composite pattern because it would be easier to add new components if we want to implement and improve our original system. Given that the design pattern is very flexible, we will be able to create both primitive and complex objects for our classes (class hierarchies) in an ideal, organized way. The feature that we want to implement with it is the display system for both the different kinds of tasks (schedule and task lists). A problem that we anticipate encountering while working on our project that the composite pattern will solve is disorganization. We can create a class of folders that essentially holds all of the created schedules that are made.
  >   * We will also be using the strategy design pattern to let the program determine at runtime which class/function to use. This way, based on user choices it can be determined during runtime which classes will be used to fulfill a job the user requests. The feature we will implement with this design pattern is printing out the user’s data. Since each user can have lots of different categories of data in their task scheduler account such as the type of task (professional, academic, personal, etc), the task due date, title, description, among others, the strategy pattern can determine during runtime what classes need to be used to display the data the user wants. The problem we can face is having too much code in displaying various types of data, and the strategy pattern can help with simplifying the code. 
-
- > * This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
