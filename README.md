@@ -2,15 +2,21 @@
  > Authors: [Sumit Gupta](https://github.com/sumitgupta314), [Jordan Sam](https://github.com/Jsam88), [Benson Wan](https://github.com/iarebwan)
 
 ## Project Description
- > ## Phase I
- > * This project is important to us because we believe it would be fun and useful to create a program that will benefit people in their everyday lives. It also has the potential to be used by a large population of people who would like to create a schedule to keep themselves more organized. Before someone makes the mistake of double booking themselves and failing to properly manage their time, they will now have the chance to prevent that. Not only will it help us as people to become more organized, but we will also utilize new strategies and skills learned from this CS100 course.
- > * Languages/Tools/Technologies:
+ > * Why is it important or interesting to you?
+ >   * This project is important to us because we believe it would be fun and useful to create a program that will benefit people in their everyday lives. It also has the potential to be used by a large population of people who would like to create a schedule to keep themselves more organized. Before someone makes the mistake of double booking themselves and failing to properly manage their time, they will now have the chance to prevent that. Not only will it help us as people to become more organized, but we will also utilize new strategies and skills learned from this CS100 course.
+ >   
+ > * What languages/tools/technologies do you plan to use?
  >   * [C++](https://www.cplusplus.com/) - Using this middle level language, we will create a console interface in which the client has the ability to input commands from the keyboard to utilize the system while also displaying the inputs on screen.
  >   * [CMake](https://cmake.org/) - We will use CMake for build automation and compiling our program.
  >   * [Git](https://git-scm.com/) - We will use Git as the version control tool to coordinate work, keep track of changes in our code, and keep our project up to date. 
  >   * [Valgrind](https://valgrind.org/) - We will use the Valgrind framework to construct dyanmic analysis tools to help us with memory debugging and detecting memory leaks.
- > * The inputs of our project would be times, dates, and the task descriptions. We are planning on using the twelve hour clock time period for the time input as well as the options for days, weeks, and months for the date input, and the task description will just be anything the user enters to describe the certain task being scheduled. The outputs would be the actual scheduled task displayed for the user to view and also approvals/denials for the task to be scheduled depending on whether the inputs are valid. 
- > * The two design patterns that we plan to use are the Composite and Strategy pattern.
+ >   
+ > * What will be the input/output of your project?
+ >   * The inputs of our project would be times, dates, and the task descriptions. We are planning on using the twelve hour clock time period for the time input as well as the options for days, weeks, and months for the date input, and the task description will just be anything the user enters to describe the certain task being scheduled. 
+ >   * The outputs would be the actual scheduled task displayed for the user to view and also approvals/denials for the task to be scheduled depending on whether the inputs are valid. 
+ >   
+ > * What are the two design patterns you will be using?
+ >   * The two design patterns that we plan to use are the Composite and Strategy pattern.
  >   * We are going to use the composite pattern because it would be easier to add new components if we want to implement and improve our original system. Given that the design pattern is very flexible, we will be able to create both primitive and complex objects for our classes (class hierarchies) in an ideal, organized way. The feature that we want to implement with it is the display system for both the different kinds of tasks (schedule and task lists). A problem that we anticipate encountering while working on our project that the composite pattern will solve is disorganization. We can create a class of folders that essentially holds all of the created schedules that are made.
  >   * We will also be using the strategy design pattern to let the program determine at runtime which class/function to use. This way, based on user choices it can be determined during runtime which classes will be used to fulfill a job the user requests. The feature we will implement with this design pattern is printing out the user’s data. Since each user can have lots of different categories of data in their task scheduler account such as the type of task (professional, academic, personal, etc), the task due date, title, description, among others, the strategy pattern can determine during runtime what classes need to be used to display the data the user wants. The problem we can face is having too much code in displaying various types of data, and the strategy pattern can help with simplifying the code. 
 
