@@ -32,7 +32,10 @@
  >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
  > ![](images/cs100%20final%20project%20class%20diagram.png)
- 
+ > Class Diagram Description:
+ > * The Composite design pattern in our project are the 3 classes of Tasks (Component class), TaskFolder (Composite class), and LeafTask (leaf class). For this project, the tasks class is essentially the base class that sets the default behavior for both our TaskFolder and LeafTask classes. With the TaskFolder class, we are able to create a hierarchy of sub-tasks and create a folder which holds all of the other user schedules if they have more than one type of schedule or if the user wants to create a folder for a specific category of tasks. Finally, the LeafTask covers a task that does not have other tasks embedded in it. By utilizing the composite pattern, the client will have an easier time interacting with an interface that has both complex and primitive objects.
+ > * 
+
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
  > * Before the meeting you should perform a sprint plan like you did in Phase II
