@@ -21,28 +21,28 @@ int main() {
 	task1->setTitle("Task 1");
 	task1->setDescription("This is the description of task 1");
 	task1->setPriority("high");
-	task1->setDueDate(18, 5, 2021);
+	task1->setDueDate(5, 18, 2021);
 	task1->setClassification("academic");
 
 	Task* task2 = new Task();
 	task2->setTitle("Task 2");
 	task2->setDescription("This is the description of task 2");
 	task2->setPriority("low");
-	task2->setDueDate(18, 4, 2021);
+	task2->setDueDate(4, 18, 2021);
 	task2->setClassification("personal");
 
 	Task* task3 = new Task();
 	task3->setTitle("Task 3");
 	task3->setDescription("This is the description of task 3");
 	task3->setPriority("medium");
-	task3->setDueDate(10, 3, 2022);
+	task3->setDueDate(3, 10, 2022);
 	task3->setClassification("work");
 
 	Task* task4 = new Task();
 	task4->setTitle("Task 4");
 	task4->setDescription("This is the description of task 4");
 	task4->setPriority("high");
-	task4->setDueDate(12, 1, 2023);
+	task4->setDueDate(1, 12, 2023);
 	task4->setClassification("work");
 
 	ListOfTasks.push_back(task1);

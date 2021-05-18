@@ -54,9 +54,9 @@ public:
 		return this->priority;
 	}
 
-	void setDueDate(int day_, int month_, int year_) {
-		this->dueDate.day = day_;
+	void setDueDate(int month_, int day_, int year_) {
 		this->dueDate.month = month_;
+		this->dueDate.day = day_;
 		this->dueDate.year = year_;
 	}
 
@@ -65,7 +65,7 @@ public:
 	}
 
 	void displayDueDate() {
-		cout << this->dueDate.day << "/" << this->dueDate.month << "/" << this->dueDate.year;
+		cout << this->dueDate.month << "/" << this->dueDate.day  << "/" << this->dueDate.year;
 	}
 
 	void setClassification(string taskType) {
