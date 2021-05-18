@@ -1,6 +1,6 @@
 //CS100 FINAL PROJECT
-#ifndef _MENU_HPP_
-#define _MENU_HPP_
+#ifndef _TASKMENU_HPP_
+#define _TASKMENU_HPP_
 
 #include <iostream>
 
@@ -10,6 +10,7 @@ class Menu {
     private:
         Schedule* currSched;
         Task* currTask;
+        void importTasksFromDatabase();
         bool verifyList();
         bool verifyTask;
         void importTasksFromDatabase();
@@ -66,7 +67,7 @@ void ScheduleActions(){
             
             }
 
-            else if (input == 'c' || input == 'C') {        //INPUT A = EDIT SCHEDULE DESCRIPTION
+            else if (input == 'c' || input == 'C') {        //INPUT C = EDIT SCHEDULE DESCRIPTION
                 string newDescription;
                 getline(cin, newDescription);
                 setTaskDescription(newDescription);
@@ -110,7 +111,7 @@ void ScheduleActions(){
             
             }
 
-            else if (input == 'c' || input == 'C') {        //INPUT A = EDIT TASK DESCRIPTION
+            else if (input == 'c' || input == 'C') {        //INPUT C = EDIT TASK DESCRIPTION
                 string newDescription;
                 getline(cin, newDescription);
                 setTaskDescription(newDescription);
@@ -299,4 +300,22 @@ void ScheduleActions(){
 
     };
 
+    void createTask(){
+
+    }
+
+    void deleteTask(){
+
+    }
+
+    void editTask(){
+
+    }
+    
+    void displayTasks(){
+
+    }
+
+
         //================================================================================
+#endif
