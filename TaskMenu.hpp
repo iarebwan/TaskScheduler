@@ -75,6 +75,59 @@ void ScheduleActions(){
                 ScheduleActions();
             }
 
+            else if (input == 'd' || input == 'D') {        //INPUT D = SET SCHEDULE DUE DATE
+                cout <<"Enter the day, month, and year of your schedule due date:" << endl;
+                int day; 
+                int month; 
+                int year;
+                cout << "Day:";
+                cin >> day;
+
+                while(isdigit(day)){
+                    if(day > 32 || day < 1){
+                        cout << "Error: Please enter a valid day.";
+                        cin >> day;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+
+                cout << "Month:";
+                cin >> month;
+                while(isdigit(month)){
+                    if(month > 12 || month < 1){
+                        cout << "Error: Please enter a valid month.";
+                        cin >> day;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                cout << "Year";
+                cin >> year;
+                while(isdigit(year)){
+                    if(year < 0){
+                        cout << "Error: Please enter a valid year.";
+                        cin >> year;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                setDueDate(day, month, year);
+                
+            }
+            else if (input == 'e' || input == 'E') {        //INPUT E = DISPLAY CURRENT SCHEDULE
+            
+            }
+            else if (input == 'f' || input == 'F') {        //INPUT F = EMBED ANOTHER SCHEDULE
+            
+            }
+            else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS SCHEDULE
+            
+            }
+
             else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
                 cout << "Back to main menu!" << endl;
                 printTaskMenu();
@@ -98,7 +151,7 @@ void ScheduleActions(){
                 cout << endl;
             }
 
-            if (input == 'a' || input == 'A') {        //INPUT A = RENAME TASK
+            if (input == 'a' || input == 'A') {              //INPUT A = RENAME TASK
                 cout << "What would you like to rename your task to?";
                 string rename;
                 getline(cin, rename);
@@ -117,6 +170,59 @@ void ScheduleActions(){
                 setTaskDescription(newDescription);
                 printTaskActions();
                 TaskMenu();
+            }
+
+            else if (input == 'd' || input == 'D') {        //INPUT D = SET TASK DUE DATE
+                cout <<"Enter the day, month, and year of your task due date:" << endl;
+                int day; 
+                int month; 
+                int year;
+                cout << "Day:";
+                cin >> day;
+
+                while(isdigit(day)){
+                    if(day > 32 || day < 1){
+                        cout << "Error: Please enter a valid day.";
+                        cin >> day;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+
+                cout << "Month:";
+                cin >> month;
+                while(isdigit(month)){
+                    if(month > 12 || month < 1){
+                        cout << "Error: Please enter a valid month.";
+                        cin >> day;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                cout << "Year";
+                cin >> year;
+                while(isdigit(year)){
+                    if(year < 0){
+                        cout << "Error: Please enter a valid year.";
+                        cin >> year;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                setDueDate(day, month, year);
+            }
+
+            else if (input == 'e' || input == 'E') {        //INPUT E = DISPLAY CURRENT TASK
+            
+            }
+            else if (input == 'f' || input == 'F') {        //INPUT F = EMBED ANOTHER TASK
+            
+            }
+            else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS TASK
+            
             }
 
 
