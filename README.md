@@ -26,15 +26,6 @@
  > * The Composite design pattern in our project are the 3 classes of Tasks (Component class), TaskFolder (Composite class), and LeafTask (leaf class). For this project, the Tasks class is essentially the abstract base class that sets the default behavior for both the TaskFolder and LeafTask classes. With the TaskFolder class, we are able to create a hierarchy of sub-tasks and create a folder which holds all of the other user schedules if they have more than one type of schedule or if the user wants to create a folder for a specific category of tasks. Finally, the LeafTask covers a task that does not have other tasks embedded in it. The TaskFolder class has an aggregation relationship with the Tasks class because it has a vector of Tasks objects. The Tasks class has an aggregation relationship with the OrderTasks class so that it can specify how to order tasks and call the display function to print the tasks in that order. By utilizing the composite pattern, the client will have an easier time interacting with an interface that has both complex and primitive objects.
  > * The Strategy design pattern is on the right side of the diagram. For this pattern, we have the abstract class as OrderTasks (Compositor) that has a virtual function called display(string type). The OrderTasks abstract class has three derived classes (Strategy classes) where each derived class displays the tasks in a different order. The OrderByDueDate class has a display function that displays the tasks in the order of the closest due date on the top and the farthest due date on the bottom. Similarly, the OrderByPriority class displays the tasks with high priority tasks being displayed on top, medium priority tasks displayed in the middle, and low priority tasks displayed on the bottom. The OrderByTaskType class displays the tasks by the task type (personal, work, or study) the user chooses to be displayed on top.
 
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
-
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
