@@ -12,7 +12,7 @@ private:
 	//string type;
 
 public:
-	virtual void display(vector<Task*> listOfTasks, string type = "") = 0;
+	virtual void display(vector<Task*>& listOfTasks, string type = "") = 0;
 };
 
 

@@ -50,13 +50,20 @@ int main() {
 	ListOfTasks.push_back(task3);
 	ListOfTasks.push_back(task4);
 
-	test_printByDueDate(ListOfTasks);
+	cout << "Order by Priority:" << endl;
 	test_printByPriority(ListOfTasks);
-	test_printByClassification(ListOfTasks, "work");
+	cout << endl;
 
+	cout << "Order by due date:" << endl;
+	test_printByDueDate(ListOfTasks);
+	cout << endl;
+
+	cout << "Order by Classification - work" << endl;
+	test_printByClassification(ListOfTasks, "work");
+	cout << endl;
 }
 
-void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classification = " ") {
+void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classification = "") {
 	orderType->display(ListOfTasks, classification);
 }
 
@@ -71,6 +78,6 @@ void test_printByPriority(vector<Task*>& ListOfTasks) {
 }
 
 void test_printByClassification(vector<Task*>& ListOfTasks, string classification) {
-	OrderByTaskType* orderTaskType = new OrderByTaskType();
+	OrderTasks* orderTaskType = new OrderByTaskType();
 	printTasks(ListOfTasks, orderTaskType, classification);
 }
