@@ -31,7 +31,7 @@
  >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
  >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
- > ![image](cs100%20final%20project%20class%20diagram.png)
+ > ![image](https://github.com/cs100/final-project-bwan008_jsam007_sgupt060/blob/iarebwan/subtasks-logic/images/cs100%20final%20project%20class%20diagram.png)
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
