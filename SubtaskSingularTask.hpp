@@ -97,6 +97,8 @@ public:
         return "Singular Task";
     }
 
+    vector<Task*> getTaskList() {}
+
 protected:
     void saveTaskInformation() {
         fstream writeToFile;

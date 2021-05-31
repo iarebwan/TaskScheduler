@@ -104,6 +104,8 @@ public:
         return "Schedule Task";
     }
 
+    vector<Task*> getTaskList() {}
+
     void displaySubtasks() {
         for(int i = 0; i < listOfTasks.size(); i++) {
             if(listOfTasks.at(i)->checkTaskType() == "Schedule Task") {
