@@ -20,6 +20,7 @@ public:
     virtual void setTaskType(string taskType) = 0;
     virtual string getTaskType() = 0;
     virtual string checkTaskType() = 0;
+    virtual vector<Task*> getTaskList() = 0;
 protected:
     virtual void saveTaskInformation() = 0;
     string title;
