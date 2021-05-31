@@ -68,12 +68,12 @@ void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classi
 }
 
 void test_printByDueDate(vector<Task*>& ListOfTasks) {
-	OrderByDueDate* orderDueDate = new OrderByDueDate();
+	OrderTasks* orderDueDate = new OrderByDueDate();
 	printTasks(ListOfTasks, orderDueDate);
 }
 
 void test_printByPriority(vector<Task*>& ListOfTasks) {
-	OrderByPriority* orderPriority = new OrderByPriority();
+	OrderTasks* orderPriority = new OrderByPriority();
 	printTasks(ListOfTasks, orderPriority);
 }
 
