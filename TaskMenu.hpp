@@ -2,41 +2,28 @@
 #ifndef _TASKMENU_HPP_
 #define _TASKMENU_HPP_
 
+#include "SetupTaskFiles.hpp"
+#include "SubtaskFiles.hpp"
+#include "SubtaskSingularTask.hpp"
+#include "OrderByDueDate.hpp"
+#include "OrderByPriority.hpp"
+#include "OrderByTaskType.hpp"
+#include "OrderTasks.hpp"
+
+
 #include <iostream>
 
 using namespace std;
 
 class Menu {
     private:
-        Schedule* currSched;
-        Task* currTask;
         void importTasksFromDatabase();
         bool verifyList();
         bool verifyTask;
         void importTasksFromDatabase();
 
     public:
-        Menu(Schedule* currSched) {
-            this->currSched = currSched;
-        }
-
-        Menu(Schedule* currTask) {
-            this->currTask = currTask;
-        }
-
-            void runTaskScheduler() {
-            while (currSched->getTypeAction() == "Tasks") {
-                TaskMenu();
-            }
-
-            while (currTask->getTypeAction() == "Task actions") {
-                TaskActions();
-            }
-
-            while (currSched->getTypeAction() == "Schedule actions"){
-                ScheduleActions();
-            }
-        }
+        vector<Task*> tasks;
 
 //===========================================================================
 
@@ -59,6 +46,7 @@ void ScheduleActions(){
                 string rename;
                 getline(cin, rename);
                 setTaskTitle(rename);
+                cout << "Your Schedule has been re-named to " << rename << '!';
                 printScheduleActions();
                 ScheduleActions();
             }
@@ -234,48 +222,45 @@ void ScheduleActions(){
         }
 
         void printTaskMenu() {
-            cout << currSched->getName() << endl;
+            cout << "Welcome to the Task Menu. What would you like to do?" << endl;
             cout << "-------------------------------------" << endl
-                 << "a - View Schedules" << endl
-                 << "b - View Tasks" << endl
-                 << "c - Create a Schedule" << endl
-                 << "d - Create a Task" << endl
-                 << "e - Delete a Schedule" << endl
-                 << "f - Delete a Task" << endl
-                 << "g - Edit a Schedule" << endl
-                 << "h - Edit a Task" << endl
+                 << "a - View all schedules and tasks" << endl
+                 << "b - Create a Schedule" << endl
+                 << "c - Create a Task" << endl
+                 << "d - Edit a Schedule" << endl
+                 << "e - Edit a Task" << endl
                  << "q - Exit Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
         }
 
         void printScheduleActions() {                                       //Schedule is essentially a folder in this case
-            cout << endl << currSched->getName() << " - ";
             cout << "What would you like to do with this schedule?" << endl
                  << "-------------------------------------" << endl
                  << "a - Rename Schedule Title" << endl
                  << "b - Set priority" << endl
                  << "c - Set Description" << endl
                  << "d - Set Due Date" << endl
-                 << "e - Display Current Schedule" << endl
-                 << "f - Embed another Schedule" << endl
-                 << "g - Delete this Schedule" << endl
+                 << "e - Set Classification" << endl
+                 << "f - Display Current Schedule" << endl
+                 << "g - Embed another Schedule" << endl
+                 << "h - Delete this Schedule" << endl
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
         }
 
         void printTaskActions() {
-            cout << endl << currSched->getName() << " - ";
             cout << "What would you like to do with this Task?" << endl
                  << "-------------------------------------" << endl
                  << "a - Rename Task Title" << endl
                  << "b - Set priority" << endl
                  << "c - Set Description" << endl
                  << "d - Set Due Date" << endl
-                 << "e - Display Current Task" << endl
-                 << "f - Embed another Schedule" << endl
-                 << "g - Delete this Task" << endl
+                 << "e - Set Classification" << endl
+                 << "f - Display Current Task" << endl
+                 << "g - Embed another Schedule" << endl
+                 << "h - Delete this Task" << endl
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
@@ -291,111 +276,114 @@ void ScheduleActions(){
 
             while (input != 'a' && input != 'A' && input != 'b' && input != 'B' && input != 'c' && 
                    input != 'C' && input != 'd' && input != 'D' && input != 'e' && input != 'E' && 
-                   input != 'f' && input != 'F' && input != 'q' && input != 'Q') {
+                   input != 'q' && input != 'Q') {
                 cout << "Error: Unknown input. Please Select a valid option: ";
                 cin >> input;
                 cout << endl;
             }
 
             if (input == 'a' || input == 'A') {             //INPUT A = VIEW SCHEDULE(S) DONE
-                if (currSched->getSize() == 0){
+                if ( tasks.empty() == true){
                     cout << "There are no Schedules." << endl;
                 }
 
                 else{
-                    cout << "Schedule list:" << endl;
-                    currSched->print();                     //CREATE PRINT FUNCTION
+                    for(int l = 0; l < tasks.size(); l++) {
+                        cout << l + 1 << ")" << endl;
+                        tasks.at(l)->displayTask();
+                        numberOfIndents = 1;
+                        firstLayerDirectorySubtaskDisplayFlag = 0;
+                    }
                 }
             }
 
-            else if (input == 'b' || input == 'B') {             //INPUT B = VIEW TASK(S) DONE
-                if (currTask->getSize() == 0){
-                    cout << "There are no Task." << endl;
-                }
+            else if (input == 'b' || input == 'B') {             //INPUT B = CREATE A SCHEDULE
+                cout << "Type in a Schedule title followed by ENTER:" << endl;
+                string title;
+                getline(cin, title);
+                setTaskTitle(title);
 
-                else{
-                    cout << "Task list:" << endl;
-                    currTask->print();                     //CREATE PRINT FUNCTION
-                }
+                cout << "Type in the new schedules priority followed by ENTER:" << endl;
+                string priority;
+                getline(cin, priority);
+                setTaskPriority(priority);
+
+                cout << "Type in the new schedules description followed by ENTER:" << endl;
+                string description;
+                getline(cin, description);
+                setTaskDescription(description);
+
+                cout << "Type in the new schedules due date followed by ENTER:" << endl;
+                string dueDate;
+                getline(cin, dueDate);
+                setTaskDueDate(dueDate);
+
+                cout << "Type in the new schedules task type followed by ENTER:" << endl;
+                string taskType;
+                getline(cin, taskType);
+                setTaskDescription(taskType);
+
+                saveTaskInformation();      //save the information
+                printScheduleActions()      //prompt whats next with the new made schedule
             }
 
-            else if (input == 'c' || input == 'C') {        //INPUT C = CREATE A SCHEDULE
-                string ScheduleName;
-                cout << "Enter your new Schedule: ";
-                getline(cin, ScheduleName);
-                cout << endl;
-                //IMPLEMENT POINTER TO CHILD HERE (we need a function)
-                printScheduleActions();
+            else if (input == 'c' || input == 'C') {        //INPUT C = CREATE A TASK
+                cout << "Type in a Task title followed by ENTER:" << endl;
+                string title;
+                getline(cin, title);
+                setTaskTitle(title);
+
+                cout << "Type in the new schedules priority followed by ENTER:" << endl;
+                string priority;
+                getline(cin, priority);
+                setTaskPriority(priority);
+
+                cout << "Type in the new schedules description followed by ENTER:" << endl;
+                string description;
+                getline(cin, description);
+                setTaskDescription(description);
+
+                cout << "Type in the new schedules due date followed by ENTER:" << endl;
+                string dueDate;
+                getline(cin, dueDate);
+                setTaskDueDate(dueDate);
+
+                cout << "Type in the new schedules task type followed by ENTER:" << endl;
+                string taskType;
+                getline(cin, taskType);
+                setTaskDescription(taskType);
+
+                saveTaskInformation();      //save the information
+                printScheduleActions();      //prompt whats next with the new made task
                 ScheduleActions();
             }
 
-            else if (input == 'd' || input == 'D') {        //INPUT C = CREATE A TASK
-                string TaskName;
-                cout << "Enter your new Task: ";
-                getline(cin, TaskName);
-                cout << endl;
-                //IMPLEMENT POINTER TO CHILD HERE (we need a function)
-                printTaskActions();
-                TaskActions();
-            }
-
-            else if (input == 'e' || input == 'E') {        //INPUT D = DELETE A SCHEDULE
-                if (currSched->getSize() == 0) {
-                    cout << "There are no schedules." << endl;
-                }
-                else{
-                    cout << "Here is your schedule(s) list: " << endl;
-                    currSched->print();
-                    cout << endl << "Enter which schedule(s) you want to remove: ";
-                    cin >> //SOMETHING, CHECK IT, AND DELETE IT;
-                    cout << endl;
-                    printScheduleActions();
-                    ScheduleActions();
-                }
-            }
-            
-            else if (input == 'f' || input == 'F') {        //INPUT E = DELETE A TASK
-                if (currTask->getSize() == 0) {
-                    cout << "There are no task(s)." << endl;
-                }
-                else{
-                    cout << "Here is your task(s) list: " << endl;
-                    currTask->print();
-                    cout << endl << "Enter which task(s) you want to remove: ";
-                    cin >> //SOMETHING, CHECK IT, AND DELETE IT;
-                    cout << endl;
-                    printTaskActions();
-                    TaskActions();
-                }
-
-            }
-
-            else if (input == 'g' || input == 'G') {        //INPUT F = EDIT A SCHEDULE
-                if(currSched->getSize() = 0){
+            else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
+                if(tasks.empty() = true){
                     cout << "There are no schedules to edit." << endl;
                 }
-                else{
-                    cout << "Which schedule would you like to edit?";
-                    cin >> userInput;
-                    if(currSched->getTaskName == userInput){
-                        printScheduleActions();
-                        ScheduleActions();
-                    }
-                }
-            }
 
-            else if (input == 'g' || input == 'G') {        //INPUT F = EDIT A TASK
-                if(currTask->getSize() = 0){
-                    cout << "There are no tasks to edit." << endl;
-                }
                 else{
-                    cout << "Which task would you like to edit?";
-                    cin >> userInput;
-                    if(currTask->getTaskName == userInput){
-                        printTaskActions();
-                        TaskActions();
+                    cout << "Which schedule would you like to edit? Please enter the corresponding number next to the Schedule";
+                    for(int l = 0; l < tasks.size(); l++) {
+                        cout << l + 1 << ")" << endl;
+                        tasks.at(l)->displayTask();
+                        numberOfIndents = 1;
+                        firstLayerDirectorySubtaskDisplayFlag = 0;
                     }
+
+                    int userInput;
+                    cin >> userInput;
+                    while(!(cin >> userInput) || userInput > tasks.size()) {
+                        cout << "ERROR: Enter a valid number:" << endl;
+                    }
+                    cout << endl << tasks(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
+                    printScheduleActions() 
+                    ScheduleActions();
                 }
+
+            else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK
+
             }
 
             else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
@@ -405,23 +393,6 @@ void ScheduleActions(){
         }
 
     };
-
-    void createTask(){
-
-    }
-
-    void deleteTask(){
-
-    }
-
-    void editTask(){
-
-    }
-    
-    void displayTasks(){
-
-    }
-
 
         //================================================================================
 #endif
