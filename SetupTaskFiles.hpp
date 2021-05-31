@@ -24,6 +24,7 @@ class ScheduleSubtask;
 class SetupTaskFiles : public Task {
 public:
     void importTasks() {
+        tasks.clear();
         int numOfDirectories = 0;
         bool directoryStillExists = true;
         int checkIfTaskDirectoryExists = chdir("Tasks");
@@ -166,6 +167,7 @@ public:
 
         //Testing Purposes
         /*for(int l = 0; l < tasks.size(); l++) {
+            cout << l + 1 << ")" << endl;
             tasks.at(l)->displayTask();
             numberOfIndents = 1;
             firstLayerDirectorySubtaskDisplayFlag = 0;
@@ -192,6 +194,28 @@ public:
             }
         }
         return theTaskInformation;
+    }
+
+    void deleteTask(string taskTitle) {
+        for(const auto& content : fs::directory_iterator(fs::current_path())) {
+            const auto contentName = content.path().filename().string();
+            const auto contentNameWithoutFileExtension = contentName.substr(0, contentName.length() - 4);
+            if(content.is_directory() && taskTitle == contentName) {
+                const char* fileToBeDeleted = taskTitle.c_str();
+                fs::remove(fileToBeDeleted);
+                break;
+            }
+            else if(content.is_regular_file() && contentNameWithoutFileExtension == taskTitle) {
+                taskTitle += ".txt";
+                const char* fileToBeDeleted = taskTitle.c_str();
+                remove(fileToBeDeleted);
+                break;
+            }
+        }
+    }
+
+    vector<Task*> getTaskList() {
+        return tasks;
     }
 
     void displayTask() {}
