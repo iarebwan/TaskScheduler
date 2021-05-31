@@ -17,13 +17,22 @@ public:
     virtual string getTaskDescription() = 0;
     virtual void setTaskDueDate(string taskDueDate) = 0;
     virtual string getTaskDueDate() = 0;
+    virtual void setTaskType(string taskType) = 0;
+    virtual string getTaskType() = 0;
+    virtual string checkTaskType() = 0;
 protected:
     virtual void saveTaskInformation() = 0;
     string title;
     string priority;
     string description;
     string dueDate;
+    string classification;
     vector<Task*> tasks;
+    static int numberOfIndents;
+    static int firstLayerDirectorySubtaskDisplayFlag;
 };
+
+int Task::numberOfIndents = 1;
+int Task::firstLayerDirectorySubtaskDisplayFlag = 0;
 
 #endif __TASK_HPP__
