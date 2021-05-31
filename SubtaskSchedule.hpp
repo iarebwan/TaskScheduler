@@ -15,20 +15,49 @@ class Task;
 
 class ScheduleSubtask : public Task {
 public:
-    ScheduleSubtask(string taskTitle, string taskPriority, string taskDescription, string taskDueDate, vector<Task*> theListOfTasks) {
+    ScheduleSubtask(string taskTitle, string taskPriority, string taskDescription, string taskDueDate, string taskType, vector<Task*> theListOfTasks) {
         title = taskTitle;
         priority = taskPriority;
         description = taskDescription;
         dueDate = taskDueDate;
+        classification = taskType;
         listOfTasks = theListOfTasks;
     }
 
     void displayTask() {
-        cout << "TASK TITLE: " << getTaskTitle() << endl;
-        cout << "TASK PRIORITY: " << getTaskPriority() << endl;
-        cout << "TASK DESCRIPTION: " << getTaskDescription() << endl;
-        cout << "TASK TASK DUE DATE: " << getTaskDueDate() << endl;
-        //cout << "SUBTASKS: " << displaySubtasks() << endl << endl;
+        if(firstLayerDirectorySubtaskDisplayFlag == 0) {
+            firstLayerDirectorySubtaskDisplayFlag = 1;
+            cout << "TASK TITLE: " << getTaskTitle() << endl;
+            cout << "TASK PRIORITY: " << getTaskPriority() << endl;
+            cout << "TASK DESCRIPTION: " << getTaskDescription() << endl;
+            cout << "TASK DUE DATE: " << getTaskDueDate() << endl;
+            cout << "TASK TYPE: " << getTaskType() << endl;
+            displaySubtasks();
+        }
+        else if(firstLayerDirectorySubtaskDisplayFlag == 1) {
+            for (int i = 0; i < numberOfIndents; i++) {
+                cout << "\t";
+            }
+            cout << "TASK TITLE: " << getTaskTitle() << endl;
+            for (int i = 0; i < numberOfIndents; i++) {
+                cout << "\t";
+            }
+            cout << "TASK PRIORITY: " << getTaskPriority() << endl;
+            for (int i = 0; i < numberOfIndents; i++) {
+                cout << "\t";
+            }
+            cout << "TASK DESCRIPTION: " << getTaskDescription() << endl;
+            for (int i = 0; i < numberOfIndents; i++) {
+                cout << "\t";
+            }
+            cout << "TASK DUE DATE: " << getTaskDueDate() << endl;
+            for(int i = 0; i < numberOfIndents; i++) {
+                cout << "\t";
+            }
+            cout << "TASK TYPE: " << getTaskType() << endl;
+            displaySubtasks();
+            cout << endl;
+        }
     }
 
     void setTaskTitle(string taskTitle) {
@@ -63,14 +92,28 @@ public:
         return dueDate;
     }
 
-    void viewSubtaskPriorities() {
-        for(int i = 0; i < tasks.size(); i++) {
+    void setTaskType(string taskType) {
+        classification = taskType;
+    }
 
-        }
+    string getTaskType() {
+        return classification;
+    }
+
+    string checkTaskType() {
+        return "Schedule Task";
     }
 
     void displaySubtasks() {
-
+        for(int i = 0; i < listOfTasks.size(); i++) {
+            if(listOfTasks.at(i)->checkTaskType() == "Schedule Task") {
+                numberOfIndents++;
+                listOfTasks.at(i)->displayTask();
+            }
+            else if(listOfTasks.at(i)->checkTaskType() == "Singular Task") {
+                listOfTasks.at(i)->displayTask();
+            }
+        }
     }
 
 protected:
@@ -81,9 +124,11 @@ protected:
         string theTaskDescription = getTaskDescription();
         string theTaskPriority = getTaskPriority();
         string theTaskDueDate = getTaskDueDate();
+        string theTaskType = getTaskType();
         writeToFile << "TASK DESCRIPTION: " << theTaskDescription << endl << endl;
         writeToFile << "TASK PRIORITY: " << theTaskPriority << endl << endl;
         writeToFile << "TASK DUE DATE: " << theTaskDueDate << endl << endl;
+        writeToFile << "TASK CLASSIFICATION: " << theTaskType << endl << endl;
         writeToFile.close();
     }
 
