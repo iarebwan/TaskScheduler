@@ -25,7 +25,7 @@ TEST(OrderByTaskTypeTest, OneTask){
 	task1->setClassification("work");
     ListOfTasks.push_back(task1);
 
-    EXPECT_EQ(test_printByClassification(ListOfTasks), "1. Title: Task 1, TaskType(classification): work\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 1, TaskType(classification): work\n");
 }
 
 TEST(OrderByTaskTypeTest, WorkTest){
@@ -46,9 +46,9 @@ TEST(OrderByTaskTypeTest, WorkTest){
     task3->setClassification("work");
     ListOfTasks.push_back(task3);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks, work), "1. Title: Task 3, TaskType(classification): work\n 
-                                                              2. Title: Task 1, TaskType(classification): academic\n
-                                                              3. Title: Task 2, TaskType(classification): personal\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 3, TaskType(classification): work\n 
+                                                                2. Title: Task 1, TaskType(classification): academic\n
+                                                                3. Title: Task 2, TaskType(classification): personal\n");
 }
 
 TEST(OrderByTaskTypeTest, PersonalTest){
@@ -69,9 +69,9 @@ TEST(OrderByTaskTypeTest, PersonalTest){
     task3->setClassification("work");
     ListOfTasks.push_back(task3);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks, personal), "1. Title: Task 2, TaskType(classification): personal\n 
-                                                                  2. Title: Task 1, TaskType(classification): academic\n
-                                                                  3. Title: Task 3, TaskType(classification): work\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "personal"), "1. Title: Task 2, TaskType(classification): personal\n 
+                                                                    2. Title: Task 1, TaskType(classification): academic\n
+                                                                    3. Title: Task 3, TaskType(classification): work\n");
 }
 
 TEST(OrderByTaskTypeTest, academicTest){
@@ -92,9 +92,9 @@ TEST(OrderByTaskTypeTest, academicTest){
     task3->setClassification("work");
     ListOfTasks.push_back(task3);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks, personal), "1. Title: Task 2, TaskType(classification): academic\n 
-                                                                  2. Title: Task 1, TaskType(classification): personal\n
-                                                                  3. Title: Task 3, TaskType(classification): work\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "personal"), "1. Title: Task 2, TaskType(classification): academic\n 
+                                                                    2. Title: Task 1, TaskType(classification): personal\n
+                                                                    3. Title: Task 3, TaskType(classification): work\n");
 }
 
 TEST(OrderByTaskTypeTest, OneTaskTypeEntry){
@@ -109,8 +109,8 @@ TEST(OrderByTaskTypeTest, OneTaskTypeEntry){
     task2->setClassification("work");
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks, work), "1. Title: Task 2, TaskType(classification): work\n 
-                                                        2. Title: Task 1\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 2, TaskType(classification): work\n 
+                                                                2. Title: Task 1\n");
 }
 
 TEST(OrderByTaskTypeTest, NoTaskTypeEntry){
@@ -124,8 +124,8 @@ TEST(OrderByTaskTypeTest, NoTaskTypeEntry){
     task2->setTitle("Task 2");
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks), "1. Title: Task 1\n 
-                                                        2. Title: Task 2\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, ""), "1. Title: Task 1\n 
+                                                            2. Title: Task 2\n");
 }
 
 TEST(OrderByTaskTypeTest, NoTaskTypeEntry2){
@@ -157,8 +157,8 @@ TEST(OrderByTaskTypeTest, SameTaskTypeEntry){
     task2->setClassification("personal");
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByClassification(ListOfTasks, personal), "1. Title: Task 1, TaskType(classification): personal\n 
-                                                                  2. Title: Task 2, TaskType(classification): personal\n";
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "personal"), "1. Title: Task 1, TaskType(classification): personal\n 
+                                                                    2. Title: Task 2, TaskType(classification): personal\n";
 }
 
 TEST(OrderByTaskTypeTest, SameTaskTypeEntry2){
@@ -179,12 +179,12 @@ TEST(OrderByTaskTypeTest, SameTaskTypeEntry2){
     task3->setClassification("work");
     ListOfTasks.push_back(task3);
 
-    EXPECT_EQ(test_printByClassification(ListOfTasks), "1. Title: Task 1, TaskType(classification): work\n 
-                                                 2. Title: Task 2, TaskType(classification): work\n
-                                                 3. Title: Task 3, TaskType(classification): work\n");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 1, TaskType(classification): work\n 
+                                                                2. Title: Task 2, TaskType(classification): work\n
+                                                                3. Title: Task 3, TaskType(classification): work\n");
 }
 
-TEST(OrderByTaskTypeTest, LotsOfPriorities){ //HELP WITH THIS. This is because we cant use EXPECT_EQ if its random after sorting for the other priorities
+TEST(OrderByTaskTypeTest, LotsOfPriorities){
     vector<Task*> ListOfTasks;
 
     Task* task1 = new Task();
@@ -232,15 +232,15 @@ TEST(OrderByTaskTypeTest, LotsOfPriorities){ //HELP WITH THIS. This is because w
     task9->setPriority("academic");
     ListOfTasks.push_back(task9);
 
-    EXPECT_EQ(test_printByClassification(ListOfTasks, work), "1. Title: Task 1, TaskType(classification): work\n        WORK PERSONAL ACADEMIC
-                                                              2. Title: Task 4, TaskType(classification): work\n
-                                                              3. Title: Task 7, TaskType(classification): work\n
-                                                              4. Title: Task 2, TaskType(classification): personal\n
-                                                              5. Title: Task 5, TaskType(classification): personal\n
-                                                              6. Title: Task 8, TaskType(classification): personal\n
-                                                              7. Title: Task 1, TaskType(classification): academic\n
-                                                              8. Title: Task 4, TaskType(classification): academic\n
-                                                              9. Title: Task 7, TaskType(classification): academic");
+    EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 1, TaskType(classification): work\n
+                                                                2. Title: Task 4, TaskType(classification): work\n
+                                                                3. Title: Task 7, TaskType(classification): work\n
+                                                                4. Title: Task 2, TaskType(classification): personal\n
+                                                                5. Title: Task 3, TaskType(classification): academic\n
+                                                                6. Title: Task 5, TaskType(classification): personal\n
+                                                                7. Title: Task 6, TaskType(classification): academic\n
+                                                                8. Title: Task 8, TaskType(classification): personal\n
+                                                                9. Title: Task 9, TaskType(classification): academic\n");
 }
 
 int main(int argc, char **argv) {
