@@ -41,8 +41,7 @@ TEST(OrderByDueDateTest, NormalEntry){
     task2->setDueDate(4, 18, 2021);
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 2 Due date: 4/18/2021\n 
-                                                 2. Title: Task 1 Due date: 5/18/2021\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 2 Due date: 4/18/2021\n 2. Title: Task 1 Due date: 5/18/2021\n");
 }
 
 TEST(OrderByDueDateTest, OneDateEntry){
@@ -57,8 +56,7 @@ TEST(OrderByDueDateTest, OneDateEntry){
     task2->setDueDate(4, 18, 2021);
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 2 Due date: 4/18/2021\n 
-                                                 2. Title: Task 1\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 2 Due date: 4/18/2021\n 2. Title: Task 1\n");
 }
 
 TEST(OrderByDueDateTest, NoDateEntry2){
@@ -72,8 +70,7 @@ TEST(OrderByDueDateTest, NoDateEntry2){
     task2->setTitle("Task 2");
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1\n 
-                                                 2. Title: Task 2\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1\n 2. Title: Task 2\n");
 }
 
 TEST(OrderByDueDateTest, SameDateEntry){
@@ -89,8 +86,7 @@ TEST(OrderByDueDateTest, SameDateEntry){
     task2->setDueDate(5, 18, 2021);
     ListOfTasks.push_back(task2);
     
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1 Due date: 5/18/2021\n 
-                                                 2. Title: Task 2 Due date: 5/18/2021\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1 Due date: 5/18/2021\n 2. Title: Task 2 Due date: 5/18/2021\n");
 }
 
 TEST(OrderByDueDateTest, SameDateEntry2){
@@ -111,9 +107,7 @@ TEST(OrderByDueDateTest, SameDateEntry2){
     task3->setDueDate(5, 18, 2021);
     ListOfTasks.push_back(task3);
 
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1 Due date: 5/18/2021\n 
-                                                 2. Title: Task 2 Due date: 5/18/2021\n
-                                                 3. Title: Task 3 Due date: 5/18/2021\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1 Due date: 5/18/2021\n 2. Title: Task 2 Due date: 5/18/2021\n 3. Title: Task 3 Due date: 5/18/2021\n");
 }
 
 TEST(OrderByDueDateTest, LotsOfDates){
@@ -159,14 +153,14 @@ TEST(OrderByDueDateTest, LotsOfDates){
     task8->setDueDate(1, 8, 2021);
     ListOfTasks.push_back(task8);
 
-    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1, Due date: 1/1/2021\n 
-                                                 2. Title: Task 2, Due date: 1/2/2021\n
-                                                 3. Title: Task 3, Due date: 1/3/2021\n
-                                                 4. Title: Task 4, Due date: 1/4/2021\n
-                                                 5. Title: Task 5, Due date: 1/5/2021\n
-                                                 6. Title: Task 6, Due date: 1/6/2021\n
-                                                 7. Title: Task 7, Due date: 1/7/2021\n
-                                                 8. Title: Task 8, Due date: 1/8/2021\n");
+    EXPECT_EQ(test_printByDueDate(ListOfTasks), "1. Title: Task 1, Due date: 1/1/2021\n" +
+                                                "2. Title: Task 2, Due date: 1/2/2021\n" +
+                                                "3. Title: Task 3, Due date: 1/3/2021\n" +
+                                                "4. Title: Task 4, Due date: 1/4/2021\n" +
+                                                "5. Title: Task 5, Due date: 1/5/2021\n" +
+                                                "6. Title: Task 6, Due date: 1/6/2021\n" +
+                                                "7. Title: Task 7, Due date: 1/7/2021\n" +
+                                                "8. Title: Task 8, Due date: 1/8/2021\n");
 }
 
 int main(int argc, char **argv) {
