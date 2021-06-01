@@ -17,6 +17,8 @@
 #include <vector>
 
 using namespace std;
+class SingularSubtask;
+class ScheduleSubtask;
 
 class Menu : public SetupTaskFiles   {
     private:
@@ -141,7 +143,7 @@ class Menu : public SetupTaskFiles   {
                 getline(cin, taskType);
                 setTaskType(taskType);
 
-                task->saveTaskInformation();      //save the information
+                tasks->saveTaskInformation();      //save the information
                 importTasks();
                 cout << endl;
                 printTaskMenu();               //return to main menu
@@ -173,7 +175,7 @@ class Menu : public SetupTaskFiles   {
                 getline(cin, taskType);
                 setTaskDescription(taskType);
 
-                task->saveTaskInformation();      //save the information
+                tasks->saveTaskInformation();      //save the information
                 importTasks();
                 cout << endl;
                 printTaskMenu();            //return to main menu
