@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class Menu : SetupTaskFiles public  {
+class Menu : public SetupTaskFiles   {
     private:
         vector<Task*> tasks;
         void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classification = "");
@@ -127,7 +127,7 @@ class Menu : SetupTaskFiles public  {
                 getline(cin, description);
                 setTaskDescription(description);
 
-                cout << "Type in the new schedules due date (mm/day/year) followed by ENTER:" << endl;
+                cout << "Type in the new schedules due date (mm/dd/year) followed by ENTER:" << endl;
                 string dueDate;
                 getline(cin, dueDate);
                 setTaskDueDate(dueDate);
@@ -160,7 +160,7 @@ class Menu : SetupTaskFiles public  {
                 getline(cin, description);
                 setTaskDescription(description);
 
-                cout << "Type in the new schedules due date (mm/day/year) followed by ENTER:" << endl;
+                cout << "Type in the new schedules due date (mm/dd/year) followed by ENTER:" << endl;
                 string dueDate;
                 getline(cin, dueDate);
                 setTaskDueDate(dueDate);
