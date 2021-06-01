@@ -293,8 +293,10 @@ public:
         }
     }
 
+
     void ScheduleActions() {
         char input;
+        string userInput = "";
         cin >> input;
         cout << endl;
 
