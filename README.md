@@ -20,27 +20,11 @@
  >   * We are going to use the composite pattern because it would be easier to add new components if we want to implement and improve our original system. Given that this design pattern is very flexible, we will be able to create both primitive and complex objects for our classes (class hierarchies) in an ideal, organized way. In this case, we would make task lists composite and the feature that we want to implement with it is the ability to store subtasks within another task list. This means the leaf/primitive would be a singular task within our lists. A problem that we anticipate encountering while working on our project that the composite pattern will solve is disorganization. We can create a class of folders that essentially allows us to hold task lists within task lists and organize all of the created schedules that we create.
  >   * We will also be using the strategy design pattern to let the program determine at runtime which class (strategy) to use. This way, based on user choices it can be determined during runtime which class needs to be used to order and print the tasks the way the user wants. The feature we will implement with this design pattern is printing out the user’s tasks in different orders. The order can be chosen by the user depending on if they choose to see their tasks ordered by due date, priority (high, medium, low), or type of task (personal, work, study). The problem we may face is having too much code for displaying the user’s tasks in different orders, and the strategy pattern can help with simplifying the code.
 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
 ## Class Diagram
- > ![image](https://github.com/cs100/final-project-bwan008_jsam007_sgupt060/blob/iarebwan/subtasks-logic/images/cs100%20final%20project%20class%20diagram.png)
- 
- > ## Phase III
- > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
- > * Before the meeting you should perform a sprint plan like you did in Phase II
- > * In the meeting with your TA you will discuss: 
- >   - How effective your last sprint was (each member should talk about what they did)
- >   - Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- >   - Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- >   - What tasks you are planning for this next sprint.
+ > ![](cs100%20final%20project%20class%20diagram.png)
+ > Class Diagram Description:
+ > * The Composite design pattern in our project are the 3 classes of Tasks (Component class), TaskFolder (Composite class), and LeafTask (leaf class). For this project, the Tasks class is essentially the abstract base class that sets the default behavior for both the TaskFolder and LeafTask classes. With the TaskFolder class, we are able to create a hierarchy of sub-tasks and create a folder which holds all of the other user schedules if they have more than one type of schedule or if the user wants to create a folder for a specific category of tasks. Finally, the LeafTask covers a task that does not have other tasks embedded in it. The TaskFolder class has an aggregation relationship with the Tasks class because it has a vector of Tasks objects. The Tasks class has an aggregation relationship with the OrderTasks class so that it can specify how to order tasks and call the display function to print the tasks in that order. By utilizing the composite pattern, the client will have an easier time interacting with an interface that has both complex and primitive objects.
+ > * The Strategy design pattern is on the right side of the diagram. For this pattern, we have the abstract class as OrderTasks (Compositor) that has a virtual function called display(string type). The OrderTasks abstract class has three derived classes (Strategy classes) where each derived class displays the tasks in a different order. The OrderByDueDate class has a display function that displays the tasks in the order of the closest due date on the top and the farthest due date on the bottom. Similarly, the OrderByPriority class displays the tasks with high priority tasks being displayed on top, medium priority tasks displayed in the middle, and low priority tasks displayed on the bottom. The OrderByTaskType class displays the tasks by the task type (personal, work, or study) the user chooses to be displayed on top.
 
  > ## Final deliverable
  > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
