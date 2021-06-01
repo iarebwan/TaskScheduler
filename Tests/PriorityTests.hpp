@@ -166,9 +166,9 @@ TEST(OrderByPriorityTest, LotsOfPriorities){
     EXPECT_EQ(test_printByPriority(ListOfTasks),"1. Title: Task 3, priority: high\n2. Title: Task 6, priority: high\n3. Title: Task 9, priority: high\n4. Title: Task 2, priority: medium\n5. Title: Task 5, priority: medium\n6. Title: Task 8, priority: medium\n7. Title: Task 1, priority: low\n8. Title: Task 4, priority: low\n9. Title: Task 7, priority: low\n");
 }
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+//int main(int argc, char **argv) {
+//  ::testing::InitGoogleTest(&argc, argv);
+//  return RUN_ALL_TESTS();
+//}
 
 #endif

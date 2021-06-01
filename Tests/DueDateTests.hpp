@@ -165,9 +165,9 @@ TEST(OrderByDueDateTest, LotsOfDates){
                                                 "8. Title: Task 8, Due date: 1/8/2021\n");
 }
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+//int main(int argc, char **argv) {
+//  ::testing::InitGoogleTest(&argc, argv);
+//  return RUN_ALL_TESTS();
+//}
 
 #endif

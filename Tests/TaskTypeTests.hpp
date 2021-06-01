@@ -223,9 +223,9 @@ TEST(OrderByTaskTypeTest, LotsOfPriorities){
     EXPECT_EQ(test_printByClassification(ListOfTasks, "work"), "1. Title: Task 1, TaskType(classification): work\n2. Title: Task 4, TaskType(classification): work\n3. Title: Task 7, TaskType(classification): work\n4. Title: Task 2, TaskType(classification): personal\n5. Title: Task 3, TaskType(classification): academic\n6. Title: Task 5, TaskType(classification): personal\n7. Title: Task 6, TaskType(classification): academic\n8. Title: Task 8, TaskType(classification): personal\n9. Title: Task 9, TaskType(classification): academic\n");
 }
 
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+//int main(int argc, char **argv) {
+//  ::testing::InitGoogleTest(&argc, argv);
+//  return RUN_ALL_TESTS();
+//}
 
 #endif
