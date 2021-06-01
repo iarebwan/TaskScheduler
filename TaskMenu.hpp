@@ -44,6 +44,7 @@ class Menu : public SetupTaskFiles   {
                  << "q - Exit Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
+                 TaskMenu();
         }
 
         void printScheduleActions() {                                       //Schedule is essentially a folder in this case
@@ -59,6 +60,7 @@ class Menu : public SetupTaskFiles   {
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
+                 ScheduleActions();
         }
 
         void printTaskActions() {
@@ -74,6 +76,7 @@ class Menu : public SetupTaskFiles   {
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
+                 TaskActions();
         }
         
         
@@ -108,7 +111,6 @@ class Menu : public SetupTaskFiles   {
                 }
                 cout << endl;
                 printTaskMenu();
-                TaskMenu();
             }
 
             else if (input == 'b' || input == 'B') {             //INPUT B = CREATE A SCHEDULE
@@ -143,7 +145,6 @@ class Menu : public SetupTaskFiles   {
                 importTasks();
                 cout << endl;
                 printTaskMenu();               //return to main menu
-                TaskMenu();
             }
 
             else if (input == 'c' || input == 'C') {        //INPUT C = CREATE A TASK
@@ -176,7 +177,6 @@ class Menu : public SetupTaskFiles   {
                 importTasks();
                 cout << endl;
                 printTaskMenu();            //return to main menu
-                TaskMenu();
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
@@ -205,11 +205,9 @@ class Menu : public SetupTaskFiles   {
                     else{
                         cout << "ERROR: Entered Invalid Schedule. Returning to main menu." << endl;
                         printTaskMenu();
-                        TaskMenu();
                     }
                 }
                     printScheduleActions(); 
-                    ScheduleActions();
             }
 
             else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK NEEDS HELP
@@ -240,12 +238,10 @@ class Menu : public SetupTaskFiles   {
                     else{
                         cout << "ERROR: Entered Invalid Task. Returning to main menu." << endl;
                         printTaskMenu();
-                        TaskMenu();
                     }
                 
                 }
                     printTaskActions(); 
-                    TaskActions();
             }
 
             else if (input == 'F' || input == 'F') {        //INPUT F = DUE DATE DISPLAY
@@ -304,7 +300,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printScheduleActions();
-                ScheduleActions();
             }
 
             else if (input == 'b' || input == 'B') {        //INPUT B = SET SCHEDULE PRIORITY
@@ -315,7 +310,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printScheduleActions();
-                ScheduleActions();
             }
 
             else if (input == 'c' || input == 'C') {        //INPUT C = SET SCHEDULE DESCRIPTION
@@ -327,7 +321,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printScheduleActions();
-                ScheduleActions();
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = SET SCHEDULE DUE DATE
@@ -338,7 +331,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printScheduleActions();
-                ScheduleActions();
             }
             
             else if (input == 'e' || input == 'E') {        //INPUT E = SET SCHEDULE CLASSIFICATION
@@ -349,7 +341,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printScheduleActions();
-                ScheduleActions();
             }
 
             else if (input == 'f' || input == 'f') {        //INPUT F = EMBED ANOTHER SCHEDULE
@@ -384,7 +375,6 @@ void ScheduleActions(){
                 importTasks();
                 cout << endl;
                 printTaskMenu();               //return to main menu
-                TaskMenu();
             }
             else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS SCHEDULE
                 task.erase(task.at(userInput - 1));
@@ -392,13 +382,11 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskMenu();
-                TaskMenu();
             }
 
             else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
                 cout << "Back to main menu!" << endl;
                 printTaskMenu();
-                TaskMenu();
             }
         }
 
@@ -428,7 +416,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskActions();
-                TaskActions();
             }
 
             else if (input == 'b' || input == 'B') {        //INPUT B = SET TASK PRIORITY
@@ -439,7 +426,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskActions();
-                TaskActions();
             }
 
             else if (input == 'c' || input == 'C') {        //INPUT C = SET TASK DESCRIPTION
@@ -451,7 +437,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskActions();
-                TaskActions();
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = SET TASK DUE DATE
@@ -462,7 +447,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskActions();
-                TaskActions();
             }
             
             else if (input == 'e' || input == 'E') {        //INPUT E = SET TASK CLASSIFICATION
@@ -473,7 +457,6 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskActions();
-                TaskActions();
             }
 
             else if (input == 'f' || input == 'F') {        //INPUT F = EMBED ANOTHER TASK
@@ -506,7 +489,6 @@ void ScheduleActions(){
 
                 cout << endl;
                 printTaskMenu();            //return to main menu
-                TaskMenu();
             }
 
             else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS TASK NEEDS HELP
@@ -515,13 +497,11 @@ void ScheduleActions(){
                 task->saveTaskInformation();
                 importTasks();
                 printTaskMenu();
-                TaskMenu();
             }
 
             else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
                 cout << "Main menu!" << endl;
                 printTaskMenu();
-                TaskMenu();
             }
         }
 
