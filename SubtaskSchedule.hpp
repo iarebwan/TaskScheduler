@@ -8,8 +8,11 @@
 #include <iostream>
 #include <dir.h>
 #include <fstream>
+#include <stdio.h>
+#include <filesystem>
 
 using namespace std;
+namespace fs = std::filesystem;
 
 class Task;
 
@@ -104,7 +107,9 @@ public:
         return "Schedule Task";
     }
 
-    vector<Task*> getTaskList() {}
+    vector<Task*> getEmbeddedListOfTasks() {
+        return listOfTasks;
+    }
 
     void displaySubtasks() {
         for(int i = 0; i < listOfTasks.size(); i++) {
@@ -118,10 +123,26 @@ public:
         }
     }
 
-protected:
+    void renameTaskFile(string oldTaskTitleStr) {
+        oldTaskTitleStr += ".txt";
+        const char* oldTaskTitle = oldTaskTitleStr.c_str();
+        string newTaskTitleStr = getTaskTitle() + ".txt";
+        const char* newTaskTitle = newTaskTitleStr.c_str();
+        rename(oldTaskTitle, newTaskTitle);
+        chdir("..");
+        for(const auto& content : fs::directory_iterator(fs::current_path())) {
+            if(content.is_directory()) {
+                fs::rename(oldTaskTitleStr, getTaskTitle());
+                const char* newTaskTitle2 = newTaskTitleStr.substr(0, newTaskTitleStr.length() - 4).c_str();
+                chdir(newTaskTitle2);
+                break;
+            }
+        }
+    }
+
     void saveTaskInformation() {
         fstream writeToFile;
-        string fileName = getTaskTitle();
+        string fileName = getTaskTitle() + ".txt";
         writeToFile.open(fileName, ios::out | ios::trunc);
         string theTaskDescription = getTaskDescription();
         string theTaskPriority = getTaskPriority();
@@ -134,15 +155,15 @@ protected:
         writeToFile.close();
     }
 
-    void createSchedule() {
-        string theTaskTitleStr = getTaskTitle();
-        const char* theTaskTitle = theTaskTitleStr.c_str();
-        mkdir(theTaskTitle);
-        chdir(theTaskTitle);
-    }
+    // void createSchedule() {
+    //     string theTaskTitleStr = getTaskTitle();
+    //     const char* theTaskTitle = theTaskTitleStr.c_str();
+    //     mkdir(theTaskTitle);
+    //     chdir(theTaskTitle);
+    // }
 
 private:
     vector<Task*> listOfTasks;
 };
 
-#endif __SUBTASK_SCHEDULE_HPP__
+#endif //__SUBTASK_SCHEDULE_HPP__
