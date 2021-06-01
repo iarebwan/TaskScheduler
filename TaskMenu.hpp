@@ -17,13 +17,8 @@ using namespace std;
 
 class Menu {
     private:
-        void importTasksFromDatabase();
-        bool verifyList();
-        bool verifyTask;
-        void importTasksFromDatabase();
-
+    vector<Task*> tasks;
     public:
-        vector<Task*> tasks;
 
 //===========================================================================
 
@@ -51,9 +46,8 @@ class Menu {
                  << "c - Set Description" << endl
                  << "d - Set Due Date" << endl
                  << "e - Set Classification" << endl
-                 << "f - Display Current Schedule" << endl
-                 << "g - Embed another Schedule" << endl
-                 << "h - Delete this Schedule" << endl
+                 << "f - Embed another Schedule" << endl
+                 << "g - Delete this Schedule" << endl
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
@@ -67,9 +61,8 @@ class Menu {
                  << "c - Set Description" << endl
                  << "d - Set Due Date" << endl
                  << "e - Set Classification" << endl
-                 << "f - Display Current Task" << endl
-                 << "g - Embed another Schedule" << endl
-                 << "h - Delete this Task" << endl
+                 << "f - Embed another Schedule" << endl
+                 << "g - Delete this Task" << endl
                  << "q - Return to Task Scheduler" << endl
                  << "-------------------------------------" << endl << endl
                  << "Choose an option: ";
@@ -85,7 +78,8 @@ class Menu {
 
             while (input != 'a' && input != 'A' && input != 'b' && input != 'B' && input != 'c' && 
                    input != 'C' && input != 'd' && input != 'D' && input != 'e' && input != 'E' && 
-                   input != 'q' && input != 'Q') {
+                   input != 'f' && input != 'F' && input != 'g' && input != 'G' && inout != 'h' &&
+                   input != 'H' && input != 'q' && input != 'Q') {
                 cout << "Error: Unknown input. Please Select a valid option: ";
                 cin >> input;
                 cout << endl;
@@ -135,13 +129,13 @@ class Menu {
                 cout << "Type in the new schedules task type followed by ENTER:" << endl;
                 string taskType;
                 getline(cin, taskType);
-                setTaskDescription(taskType);
+                setTaskType(taskType);
 
                 saveTaskInformation();      //save the information
 
                 cout << endl;
-                printScheduleActions()      //prompt whats next with the new made schedule
-                ScheduleActions();
+                printTaskMenu();               //return to main menu
+                TaskMenu();
             }
 
             else if (input == 'c' || input == 'C') {        //INPUT C = CREATE A TASK
@@ -171,8 +165,10 @@ class Menu {
                 setTaskDescription(taskType);
 
                 saveTaskInformation();      //save the information
-                printTaskActions();      //prompt whats next with the new made task
-                TaskActions();
+
+                cout << endl;
+                printTaskMenu();            //return to main menu
+                TaskMenu();
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
@@ -196,8 +192,18 @@ class Menu {
                         cin >> userInput;
                         cout << endl;
                     }
-                    cout << endl << tasks.at(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
-                    printScheduleActions() 
+                    if(tasks.at(userInput).checkTaskType() == "Schedule Task"){
+                        cout << endl << tasks.at(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
+                    }
+                    else{
+                        cout << "ERROR: Entered Invalid Schedule. Returning to main menu." << endl;
+                        printTaskMenu();
+                        TaskMenu();
+                    }
+
+                    }
+
+                    printScheduleActions(); 
                     ScheduleActions();
                 }
 
@@ -206,10 +212,34 @@ class Menu {
                     cout << "There are no tasks to edit." << endl;
                 }
 
-                else if (task.at(l))
+                else{
+                    cout << "Which task would you like to edit? Please enter the corresponding number next to the task";
+                    for(int l = 0; l < tasks.size(); l++) {
+                        cout << l + 1 << ")" << endl;
+                        tasks.at(l)->displayTask();
+                        numberOfIndents = 1;
+                        firstLayerDirectorySubtaskDisplayFlag = 0;
+                    }
+
+                    int userInput;
+                    cin >> userInput;
+                    while(!(cin >> userInput) || userInput > tasks.size() || userInput <= 0) {
+                        cout << "ERROR: Enter a valid number:" << endl;
+                        cin >> userInput;
+                        cout << endl;
+                    }
+
+                    if(tasks.at(userInput).checkTaskType() == "Singular Task"){
+                        cout << endl << tasks.at(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
+                    }
+                    else{
+                        cout << "ERROR: Entered Invalid Task. Returning to main menu." << endl;
+                        printTaskMenu();
+                        TaskMenu();
+                    }
                 
                 }
-                    printTaskActions() 
+                    printTaskActions(); 
                     TaskActions();
             }
 
@@ -240,7 +270,8 @@ void ScheduleActions(){
 
             while (input != 'a' && input != 'A' && input != 'b' && input != 'B' && input != 'c' && 
                    input != 'C' && input != 'd' && input != 'D' && input != 'e' && input != 'E' && 
-                   input != 'f' && input != 'F' && input != 'h' && input != 'H' && input != 'q' && input != 'Q') {
+                   input != 'f' && input != 'F' && input != 'g' && input != 'G' && input != 'q' && 
+                   input != 'Q') {
                 cout << "Error: Unknown input. Please Select a valid option: ";
                 cin >> input;
                 cout << endl;
@@ -261,63 +292,58 @@ void ScheduleActions(){
                 
             }
 
-            else if (input == 'c' || input == 'C') {        //INPUT C = EDIT SCHEDULE DESCRIPTION
+            else if (input == 'c' || input == 'C') {        //INPUT C = SET SCHEDULE DESCRIPTION
                 string newDescription;
                 getline(cin, newDescription);
                 setTaskDescription(newDescription);
                 tasks.at(l).setTaskDescription(newDescription);
                 cout << "Your Schedule has been re-described to " << newDescription << '!' << endl;
-                importTasks()
+                importTasks();
                 printScheduleActions();
                 ScheduleActions();
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = SET SCHEDULE DUE DATE
                 cout <<"Enter the day, month, and year of your schedule due date:" << endl;
-            //     int day; 
-            //     int month; 
-            //     int year;
-            //     cout << "Day:";
-            //     cin >> day;
-
-            //     while(isdigit(day)){
-            //         if(day > 32 || day < 1){
-            //             cout << "Error: Please enter a valid day.";
-            //             cin >> day;
-            //         }
-            //         else{
-            //             continue;
-            //         }
-            //     }
-
-            //     cout << "Month:";
-            //     cin >> month;
-            //     while(isdigit(month)){
-            //         if(month > 12 || month < 1){
-            //             cout << "Error: Please enter a valid month.";
-            //             cin >> day;
-            //         }
-            //         else{
-            //             continue;
-            //         }
-            //     }
-            //     cout << "Year";
-            //     cin >> year;
-            //     while(isdigit(year)){
-            //         if(year < 0){
-            //             cout << "Error: Please enter a valid year.";
-            //             cin >> year;
-            //         }
-            //         else{
-            //             continue;
-            //         }
-            //     }
-            //     setDueDate(day, month, year);
+            }
+            
+            else if (input == 'e' || input == 'E') {        //INPUT E = SET SCHEDULE CLASSIFICATION
                 
-            // }
+            }
 
-            else if (input == 'e' || input == 'e') {        //INPUT E = EMBED ANOTHER SCHEDULE
-                tasks.at(l).pushback
+            else if (input == 'f' || input == 'f') {        //INPUT F = EMBED ANOTHER SCHEDULE
+                cout << "Type in a Schedule title followed by ENTER:" << endl;
+                string title;
+                getline(cin, title);
+                setTaskTitle(title);
+
+                createSchedule();
+
+                cout << "Type in the new schedules priority followed by ENTER:" << endl;
+                string priority;
+                getline(cin, priority);
+                setTaskPriority(priority);
+
+                cout << "Type in the new schedules description followed by ENTER:" << endl;
+                string description;
+                getline(cin, description);
+                setTaskDescription(description);
+
+                cout << "Type in the new schedules due date followed by ENTER:" << endl;
+                string dueDate;
+                getline(cin, dueDate);
+                setTaskDueDate(dueDate);
+
+                cout << "Type in the new schedules task type followed by ENTER:" << endl;
+                string taskType;
+                getline(cin, taskType);
+                setTaskType(taskType);
+
+                saveTaskInformation();      //save the information
+
+                cout << endl;
+                printTaskMenu();               //return to main menu
+                TaskMenu();
             }
             else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS SCHEDULE
             cout << "Your task has successfully been deleted!\n Returning to main menu..." << endl;
@@ -342,7 +368,8 @@ void ScheduleActions(){
 
             while (input != 'a' && input != 'A' && input != 'b' && input != 'B' && input != 'c' && 
                    input != 'C' && input != 'd' && input != 'D' && input != 'e' && input != 'E' && 
-                   input != 'f' && input != 'F' && input != 'q' && input != 'Q') {
+                   input != 'f' && input != 'F' && input != 'g' && input != 'G' && input != 'q' && 
+                   input != 'Q') {
                 cout << "Error: Unknown input. Please Select a valid option: ";
                 cin >> input;
                 cout << endl;
@@ -352,7 +379,7 @@ void ScheduleActions(){
                 cout << "What would you like to rename your task to?";
                 string rename;
                 getline(cin, rename);
-                setTaskTitle(rename);
+                tasks.at(l).setTaskTitle(rename);
                 printTaskActions();
                 TaskMenu();
             }
@@ -364,7 +391,7 @@ void ScheduleActions(){
             else if (input == 'c' || input == 'C') {        //INPUT C = EDIT TASK DESCRIPTION
                 string newDescription;
                 getline(cin, newDescription);
-                setTaskDescription(newDescription);
+                tasks.at(l).setTaskDescription(newDescription);
                 printTaskActions();
                 TaskMenu();
             }
@@ -411,10 +438,44 @@ void ScheduleActions(){
                 }
                 setDueDate(day, month, year);
             }
-
-            else if (input == 'f' || input == 'F') {        //INPUT F = EMBED ANOTHER TASK
+            else if (input == 'e' || input == 'E') {        //INPUT B = SET TASK CLASSIFICATION
             
             }
+
+            else if (input == 'f' || input == 'F') {        //INPUT F = EMBED ANOTHER TASK
+                cout << "Type in a Task title followed by ENTER:" << endl;
+                string title;
+                getline(cin, title);
+                setTaskTitle(title);
+
+                cout << "Type in the new schedules priority followed by ENTER:" << endl;
+                string priority;
+                getline(cin, priority);
+                setTaskPriority(priority);
+
+                cout << "Type in the new schedules description followed by ENTER:" << endl;
+                string description;
+                getline(cin, description);
+                setTaskDescription(description);
+
+                cout << "Type in the new schedules due date followed by ENTER:" << endl;
+                string dueDate;
+                getline(cin, dueDate);
+                setTaskDueDate(dueDate);
+
+                cout << "Type in the new schedules task type followed by ENTER:" << endl;
+                string taskType;
+                getline(cin, taskType);
+                setTaskDescription(taskType);
+
+                saveTaskInformation();      //save the information
+
+                cout << endl;
+                printTaskMenu();            //return to main menu
+                TaskMenu();
+
+            }
+            
             else if (input == 'g' || input == 'G') {        //INPUT G = DELETE THIS TASK
             
             }
