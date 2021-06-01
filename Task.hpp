@@ -21,8 +21,8 @@ public:
     virtual string getTaskType() = 0;
     virtual string checkTaskType() = 0;
     virtual vector<Task*> getTaskList() = 0;
-protected:
     virtual void saveTaskInformation() = 0;
+protected:
     string title;
     string priority;
     string description;

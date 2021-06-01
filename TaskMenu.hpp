@@ -124,73 +124,84 @@ class Menu : public SetupTaskFiles   {
             }
 
             else if (input == 'b' || input == 'B') {             //INPUT B = CREATE A SCHEDULE
+                vector<Task*> listOfTasks;
+                ScheduleSubtask* schedule = new ScheduleSubtask("", "", "", "", "", listOfTasks);
+                tasks.push_back(schedule);
+
                 cout << "Type in a Schedule title followed by ENTER:" << endl;
                 string title;
                 getline(cin, title);
-                setTaskTitle(title);
+                //setTaskTitle(title);
+                tasks.at(tasks.size() - 1)->setTaskTitle(title);
 
-                createSchedule();
+                createSchedule(title);
 
                 cout << "Type in the new schedules priority (high, medium, or low) followed by ENTER:" << endl;
                 string priority;
                 getline(cin, priority);
-                setTaskPriority(priority);
+                tasks.at(tasks.size() - 1)->setTaskPriority(priority);
 
                 cout << "Type in the new schedules description followed by ENTER:" << endl;
                 string description;
                 getline(cin, description);
-                setTaskDescription(description);
+                tasks.at(tasks.size() - 1)->setTaskDescription(description);
 
                 cout << "Type in the new schedules due date (mm/dd/year) followed by ENTER:" << endl;
                 string dueDate;
                 getline(cin, dueDate);
-                setTaskDueDate(dueDate);
+                tasks.at(tasks.size() - 1)->setTaskDueDate(dueDate);
 
                 cout << "Type in the new schedules task type followed by ENTER:" << endl;
                 string taskType;
                 getline(cin, taskType);
-                setTaskType(taskType);
+                tasks.at(tasks.size() - 1)->setTaskType(taskType);
 
-                tasks->saveTaskInformation();      //save the information
+                tasks.at(tasks.size() - 1)->saveTaskInformation();      //save the information
                 importTasks();
                 cout << endl;
                 printTaskMenu();               //return to main menu
             }
 
             else if (input == 'c' || input == 'C') {        //INPUT C = CREATE A TASK
-                cout << "Type in a Task title followed by ENTER:" << endl;
+                SingularSubtask* singularTask = new SingularSubtask("", "", "", "", "");
+                tasks.push_back(singularTask);
+
+                cout << "Type in a task title followed by ENTER:" << endl;
                 string title;
                 getline(cin, title);
-                setTaskTitle(title);
+                //setTaskTitle(title);
+                tasks.at(tasks.size() - 1)->setTaskTitle(title);
 
-                cout << "Type in the new schedules priority followed by ENTER:" << endl;
+                createSchedule(title);
+
+                cout << "Type in the new task priority (high, medium, or low) followed by ENTER:" << endl;
                 string priority;
                 getline(cin, priority);
-                setTaskPriority(priority);
+                tasks.at(tasks.size() - 1)->setTaskPriority(priority);
 
-                cout << "Type in the new schedules description followed by ENTER:" << endl;
+                cout << "Type in the new task description followed by ENTER:" << endl;
                 string description;
                 getline(cin, description);
-                setTaskDescription(description);
+                tasks.at(tasks.size() - 1)->setTaskDescription(description);
 
-                cout << "Type in the new schedules due date (mm/dd/year) followed by ENTER:" << endl;
+                cout << "Type in the new task due date (mm/dd/year) followed by ENTER:" << endl;
                 string dueDate;
                 getline(cin, dueDate);
-                setTaskDueDate(dueDate);
+                tasks.at(tasks.size() - 1)->setTaskDueDate(dueDate);
 
-                cout << "Type in the new schedules task type followed by ENTER:" << endl;
+                cout << "Type in the new task task type followed by ENTER:" << endl;
                 string taskType;
                 getline(cin, taskType);
-                setTaskDescription(taskType);
+                tasks.at(tasks.size() - 1)->setTaskType(taskType);
 
-                tasks->saveTaskInformation();      //save the information
+                tasks.at(tasks.size() - 1)->saveTaskInformation();      //save the information
                 importTasks();
                 cout << endl;
-                printTaskMenu();            //return to main menu
+                printTaskMenu();               //return to main menu
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
-                if(tasks.empty() = true){
+                if(tasks.empty() == true){
                     cout << "There are no schedules to edit." << endl;
                 }
 
@@ -209,7 +220,7 @@ class Menu : public SetupTaskFiles   {
                         cin >> userNumber;
                         cout << endl;
                     }
-                    if(tasks.at(userNumber - 1).checkTaskType() == "Schedule Task"){
+                    if(tasks.at(userNumber - 1)->checkTaskType() == "Schedule Task"){
                         cout << endl << tasks.at(userNumber - 1) << " - ";      //subtract 1 to get the right cell inside vector
                     }
                     else{
@@ -221,7 +232,7 @@ class Menu : public SetupTaskFiles   {
             }
 
             else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK NEEDS HELP
-                if(tasks.empty() = true){
+                if(tasks.empty() == true){
                     cout << "There are no tasks to edit." << endl;
                 }
 
@@ -241,7 +252,7 @@ class Menu : public SetupTaskFiles   {
                         cout << endl;
                     }
 
-                    if(tasks.at(userNumber - 1).checkTaskType() == "Singular Task"){
+                    if(tasks.at(userNumber - 1)->checkTaskType() == "Singular Task"){
                         cout << endl << tasks.at(userNumber - 1) << " - ";      //subtract 1 to get the right cell inside vector
                     }
                     else{
@@ -272,7 +283,7 @@ class Menu : public SetupTaskFiles   {
                         }
                     }
 
-                printByClassification(tasks);
+                printByClassification(tasks, classificationType);
             }
             else if (input == 'i' || input == 'I') {        //INPUT I = DELETE ALL SCHEDULES/TASKS
                 for(int l = 0; l < tasks.size(); l++) {
@@ -289,9 +300,10 @@ class Menu : public SetupTaskFiles   {
 
         //================================================================================
 
-int getUserNumber();
-void printScheduleActions();        //CHECK IF THIS REDEFINES IT HERE
-void printTaskMenu();
+// int getUserNumber();
+// void printScheduleActions();        //CHECK IF THIS REDEFINES IT HERE
+// void printTaskMenu();
+
 void ScheduleActions(){
             char input;
             printScheduleActions();

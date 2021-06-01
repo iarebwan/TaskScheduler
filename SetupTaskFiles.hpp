@@ -230,8 +230,27 @@ public:
     void setTaskType(string taskType) {}
     string getTaskType() {}
     string checkTaskType() {}
-protected:
-    void saveTaskInformation() {}
+    void createSchedule(string theTaskTitleStr) {
+        //string theTaskTitleStr = getTaskTitle();
+        const char* theTaskTitle = theTaskTitleStr.c_str();
+        mkdir(theTaskTitle);
+        chdir(theTaskTitle);
+    }
+    
+    void saveTaskInformation() {
+        // fstream writeToFile;
+        // string fileName = getTaskTitle();
+        // writeToFile.open(fileName, ios::out | ios::trunc);
+        // string theTaskDescription = getTaskDescription();
+        // string theTaskPriority = getTaskPriority();
+        // string theTaskDueDate = getTaskDueDate();
+        // string theTaskType = getTaskType();
+        // writeToFile << "TASK DESCRIPTION: " << theTaskDescription << endl << endl;
+        // writeToFile << "TASK PRIORITY: " << theTaskPriority << endl << endl;
+        // writeToFile << "TASK DUE DATE: " << theTaskDueDate << endl << endl;
+        // writeToFile << "TASK CLASSIFICATION: " << theTaskType << endl << endl;
+        // writeToFile.close();
+    }
 private:
     map<string, int> directoryWithNumOfSubDirectories;
     vector<map<string, int>> directories;
@@ -239,4 +258,4 @@ private:
     vector<Task*> listOfTasksFromSubDirectory;
 };
 
-#endif __SETUP_TASK_FILES_HPP__
+#endif //__SETUP_TASK_FILES_HPP__

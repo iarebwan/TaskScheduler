@@ -117,8 +117,6 @@ public:
             }
         }
     }
-
-protected:
     void saveTaskInformation() {
         fstream writeToFile;
         string fileName = getTaskTitle();
@@ -134,12 +132,12 @@ protected:
         writeToFile.close();
     }
 
-    void createSchedule() {
-        string theTaskTitleStr = getTaskTitle();
-        const char* theTaskTitle = theTaskTitleStr.c_str();
-        mkdir(theTaskTitle);
-        chdir(theTaskTitle);
-    }
+    // void createSchedule() {
+    //     string theTaskTitleStr = getTaskTitle();
+    //     const char* theTaskTitle = theTaskTitleStr.c_str();
+    //     mkdir(theTaskTitle);
+    //     chdir(theTaskTitle);
+    // }
 
 private:
     vector<Task*> listOfTasks;
