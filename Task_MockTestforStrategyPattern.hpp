@@ -7,81 +7,91 @@
 
 using namespace std;
 
-struct Date {
-	int day;
-	int month;
-	int year;
-};
+//struct Date {
+//	int day = 0;
+//	int month = 0;
+//	int year = 0;
+//};
 
 class Task {
 private:
 	string title;
-	string description;
 	string priority; //"high", "medium", or "low"
-	Date dueDate;
+	string description;
+	//Date dueDateStruct;
+	string dueDate;
 	string classification; //"work", "personal", or "academic"
 
 public:
-	void setTitle(string title_) {
-		this->title = title_;
+	void setTaskTitle(string title_) {
+		/*this->*/title = title_;
 	}
 
-	string getTitle() {
-		return this->title;
+	string getTaskTitle() {
+		return /*this->*/title;
 	}
 
-	void setDescription(string description_) {
-		this->description = description_;
+	void setTaskDescription(string description_) {
+		/*this->*/description = description_;
 	}
 
-	string getDescription() {
-		return this->description;
+	string getTaskDescription() {
+		return /*this->*/description;
 	}
 
-	void setPriority(string priority_) {
+	void setTaskPriority(string priority_) {
 		if (priority_ == "high") {
-			this->priority = "high";
+			/*this->*/priority = "high";
 		}
 		if (priority_ == "medium") {
-			this->priority = "medium";
+			/*this->*/priority = "medium";
 		}
 		if (priority_ == "low") {
-			this->priority = "low";
+			/*this->*/priority = "low";
 		}
 	}
 
-	string getPriority() {
-		return this->priority;
+	string getTaskPriority() {
+		return /*this->*/priority;
 	}
 
-	void setDueDate(int day_, int month_, int year_) {
-		this->dueDate.day = day_;
-		this->dueDate.month = month_;
-		this->dueDate.year = year_;
+	/*void setDueDateStruct(int month_, int day_, int year_) {
+		this->dueDateStruct.month = month_;
+		this->dueDateStruct.day = day_;
+		this->dueDateStruct.year = year_;
 	}
 
-	Date getDueDate() {
-		return this->dueDate;
+	Date getDueDateStruct() {
+		return this->dueDateStruct;
+	}*/
+
+	void setTaskDueDate(string date) {
+		/*this->*/dueDate = date;
+	}
+
+	string getTaskDueDate() {
+		return /*this->*/dueDate;
 	}
 
 	void displayDueDate() {
-		cout << this->dueDate.day << "/" << this->dueDate.month << "/" << this->dueDate.year;
+		//cout << this->dueDateStruct.month << "/" << this->dueDateStruct.day  << "/" << this->dueDateStruct.year;
+		cout << /*this->*/dueDate;
 	}
 
-	void setClassification(string taskType) {
+	void setTaskType(string taskType) {
 		if (taskType == "work") {
-			this->classification = "work";
+			/*this->*/classification = "work";
 		}
 		if (taskType == "personal") {
-			this->classification = "personal";
+			/*this->*/classification = "personal";
 		}
 		if (taskType == "academic") {
-			this->classification = "academic";
+			/*this->*/classification = "academic";
 		}
 	}
 
-	string getClassification() {
-		return this->classification;
+	string getTaskType() {
+		return /*this->*/classification;
 	}
 
 };

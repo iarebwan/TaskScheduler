@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
 
 #include "OrderTasks.hpp"
 
@@ -27,7 +28,7 @@ public:
 		for (int i = 1; i < listOfTasks.size(); i++) {
 			j = i - 1;
 			Task* currentTask = listOfTasks.at(i);
-			while (j >= 0 && compareTaskType_isTrue(listOfTasks.at(j)->getClassification(), currentTask->getClassification(), taskType)) {
+			while (j >= 0 && compareTaskType_isTrue(listOfTasks.at(j)->getTaskType(), currentTask->getTaskType(), taskType)) {
 				listOfTasks.at(j + 1) = listOfTasks.at(j);
 				j = j - 1;
 			}
@@ -37,7 +38,7 @@ public:
 		//display the title and priority of each task by iterating through the vector
 		//number each task as you display them (1., 2., 3., ...)
 		for (int i = 0; i < listOfTasks.size(); i++) {
-			cout << i + 1 << ". Title: " << listOfTasks.at(i)->getTitle() << ", TaskType(classification): " << listOfTasks.at(i)->getClassification() << endl;
+			cout << i + 1 << ". Title: " << listOfTasks.at(i)->getTaskTitle() << ", TaskType(classification): " << listOfTasks.at(i)->getTaskType() << endl;
 		}
 
 	}
