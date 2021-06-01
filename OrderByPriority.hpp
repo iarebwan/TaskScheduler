@@ -13,10 +13,10 @@ class OrderByPriority : public OrderTasks {
 private:
 	//returns true if tasks need to be swapped which is when priority1 is less than priority2
 	bool comparePriority_isTrue(string priority1, string priority2) {
-		if (priority1 == "low" && (priority2 == "medium" || priority2 == "high")) {
+		if (priority1 == "Low" || priority1 == "low" && (priority2 == "Medium" || priority2 == "medium" || priority2 == "High" || priority2 == "high")) {
 			return true;
 		}
-		if (priority1 == "medium" && priority2 == "high") {
+		if ((priority1 == "Medium" || priority1 == "medium") && (priority2 == "High" || priority2 == "high")) {
 			return true;
 		}
 		return false;
