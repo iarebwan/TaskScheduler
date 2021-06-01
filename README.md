@@ -27,15 +27,18 @@
  > * The Strategy design pattern is on the right side of the diagram. For this pattern, we have the abstract class as OrderTasks (Compositor) that has a virtual function called display(string type). The OrderTasks abstract class has three derived classes (Strategy classes) where each derived class displays the tasks in a different order. The OrderByDueDate class has a display function that displays the tasks in the order of the closest due date on the top and the farthest due date on the bottom. Similarly, the OrderByPriority class displays the tasks with high priority tasks being displayed on top, medium priority tasks displayed in the middle, and low priority tasks displayed on the bottom. The OrderByTaskType class displays the tasks by the task type (personal, work, or study) the user chooses to be displayed on top.
 
  > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+ > Instructions on installing and running our application:
+ > * In order to use our program, First you would run the program, you would first clone our project repository (git clone https://github.com/cs100/final-project-bwan008_jsam007_sgupt060.git) into your local machine and run it inside of your terminal.
+ > * Next you would compile the application by running the command "g++ -std=c++17 main.cpp -o main" in your terminal followed by "./main.exe" to execute it.
+ > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (Please note that the Create a schedule/Create a task are buggy and cut off the first letter of all of the strings that are saved when a user enters them.)
+ > * NOTES: 
+ >   * Due date has to be formatted as mm/dd/year and Priority as the words "low, medium, and high".
+ >   * \n is newline or "Enter" on your keyboard.
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
+ > * We tested our project utilizing gtest for c++. We created a task folder that holds all of the seperate unit tests for each class and tested expected user inputs and invalid user inputs. We also tested mock main.cpp cases where we call the menu, its actions, and carry out the functions that implement both the composite pattern and strategy pattern.
+
