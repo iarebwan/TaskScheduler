@@ -10,14 +10,20 @@
 #include "OrderByTaskType.hpp"
 #include "OrderTasks.hpp"
 
-
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 class Menu : SetupTaskFiles public  {
     private:
-    vector<Task*> tasks;
+        vector<Task*> tasks;
+        void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classification = "");
+        void printByDueDate(vector<Task*>& ListOfTasks);
+        void printByPriority(vector<Task*>& ListOfTasks);
+        void printByClassification(vector<Task*>& ListOfTasks, string classification);
+
     public:
 
 //===========================================================================
@@ -172,13 +178,13 @@ class Menu : SetupTaskFiles public  {
             }
 
             else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
-                if(tasks.empty() = true){
+                if (tasks.empty() = true) {
                     cout << "There are no schedules to edit." << endl;
                 }
 
-                else{
+                else {
                     cout << "Which schedule would you like to edit? Please enter the corresponding number next to the Schedule";
-                    for(int l = 0; l < tasks.size(); l++) {
+                    for (int l = 0; l < tasks.size(); l++) {
                         cout << l + 1 << ")" << endl;
                         tasks.at(l)->displayTask();
                         numberOfIndents = 1;
@@ -187,34 +193,34 @@ class Menu : SetupTaskFiles public  {
 
                     int userInput;
                     cin >> userInput;
-                    while(!(cin >> userInput) || userInput > tasks.size() || userInput <= 0) {
+                    while (!(cin >> userInput) || userInput > tasks.size() || userInput <= 0) {
                         cout << "ERROR: Enter a valid number:" << endl;
                         cin >> userInput;
                         cout << endl;
                     }
-                    if(tasks.at(userInput).checkTaskType() == "Schedule Task"){
+                    if (tasks.at(userInput).checkTaskType() == "Schedule Task") {
                         cout << endl << tasks.at(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
                     }
-                    else{
+                    else {
                         cout << "ERROR: Entered Invalid Schedule. Returning to main menu." << endl;
                         printTaskMenu();
                         TaskMenu();
                     }
 
-                    }
-
-                    printScheduleActions(); 
-                    ScheduleActions();
                 }
 
+                printScheduleActions();
+                ScheduleActions();
+            }
+
             else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK
-                if(tasks.empty() = true){
+                if (tasks.empty() = true) {
                     cout << "There are no tasks to edit." << endl;
                 }
 
-                else{
+                else {
                     cout << "Which task would you like to edit? Please enter the corresponding number next to the task";
-                    for(int l = 0; l < tasks.size(); l++) {
+                    for (int l = 0; l < tasks.size(); l++) {
                         cout << l + 1 << ")" << endl;
                         tasks.at(l)->displayTask();
                         numberOfIndents = 1;
@@ -223,33 +229,47 @@ class Menu : SetupTaskFiles public  {
 
                     int userInput;
                     cin >> userInput;
-                    while(!(cin >> userInput) || userInput > tasks.size() || userInput <= 0) {
+                    while (!(cin >> userInput) || userInput > tasks.size() || userInput <= 0) {
                         cout << "ERROR: Enter a valid number:" << endl;
                         cin >> userInput;
                         cout << endl;
                     }
 
-                    if(tasks.at(userInput).checkTaskType() == "Singular Task"){
+                    if (tasks.at(userInput).checkTaskType() == "Singular Task") {
                         cout << endl << tasks.at(userInput - 1) << " - ";      //subtract 1 to get the right cell inside vector
                     }
-                    else{
+                    else {
                         cout << "ERROR: Entered Invalid Task. Returning to main menu." << endl;
                         printTaskMenu();
                         TaskMenu();
                     }
-                
+
                 }
-                    printTaskActions(); 
-                    TaskActions();
+                printTaskActions();
+                TaskActions();
             }
 
             else if (input == 'F' || input == 'F') {        //INPUT F = DUE DATE DISPLAY
+                printByDueDate(tasks);
             }
 
             else if (input == 'g' || input == 'G') {        //INPUT G = PRIORITY DISPLAY
+                printByPriority(tasks);
             }
 
             else if (input == 'h' || input == 'H') {        //INPUT H = CLASSIFICATION DISPLAY
+                string classificationType;
+                cout << "Enter the classification (work, personal, or academic) you want displayed on top" << endl;
+                cin >> classificationType;
+                    if (!(classificationType == "work" || classificationType == "personal" || classificationType == "academic")) {
+                        while (!(classificationType == "work" || classificationType == "personal" || classificationType == "academic")){
+                            cout << "Enter a valid classification (work, personal, or academic): " << endl;
+                            cin >> classificationType;
+                        }
+                    }
+
+                printByClassification(tasks);
+            
             }
 
             else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
@@ -258,11 +278,9 @@ class Menu : SetupTaskFiles public  {
             }
         }
 
-    };
-
         //================================================================================
 
-void ScheduleActions(){
+        void ScheduleActions(){
             char input;
             printScheduleActions();
             cin >> input;
@@ -487,4 +505,26 @@ void ScheduleActions(){
                 TaskMenu();
             }
         }
+
+        void printTasks(vector<Task*>& ListOfTasks, OrderTasks* orderType, string classification = "") {
+            orderType->display(ListOfTasks, classification);
+        }
+        
+        void printByDueDate(vector<Task*>& ListOfTasks) {
+            OrderTasks* orderDueDate = new OrderByDueDate();
+            printTasks(ListOfTasks, orderDueDate);
+        }
+        
+        void printByPriority(vector<Task*>& ListOfTasks) {
+            OrderTasks* orderPriority = new OrderByPriority();
+            printTasks(ListOfTasks, orderPriority);
+        }
+        
+        void printByClassification(vector<Task*>& ListOfTasks, string classification) {
+            OrderTasks* orderTaskType = new OrderByTaskType();
+            printTasks(ListOfTasks, orderTaskType, classification);
+        }
+};
+
+
 #endif
