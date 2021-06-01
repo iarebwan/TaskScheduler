@@ -146,7 +146,7 @@ public:
 		//number each task as you display them (1., 2., 3., ...)
 		for (int i = 0; i < listOfTasks.size(); i++) {
 			cout << i + 1 << ". Title: " << listOfTasks.at(i)->getTaskTitle() << ", Due date: ";
-			listOfTasks.at(i)->getTaskDueDate();
+			cout << listOfTasks.at(i)->getTaskDueDate();
 			cout << endl;
 		}
 

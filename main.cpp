@@ -1,7 +1,13 @@
 #include "TaskMenu.hpp"
 
-int main(){
-    Menu* menu;
+int main() {
+    SetupTaskFiles setup;
+    vector<Task*> theTasks;
+
+    theTasks = setup.importTasks();
+    Menu *menu = new Menu(theTasks);
     menu->printTaskMenu();
-    TaskMenu(); 
+    menu->TaskMenu();
+
+    return 0;
 }

@@ -97,12 +97,18 @@ public:
         return "Singular Task";
     }
 
-    vector<Task*> getTaskList() {}
+    vector<Task*> getEmbeddedListOfTasks() {}
 
-protected:
+    void renameTaskFile(string oldTaskTitleStr) {
+        const char* oldTaskTitle = oldTaskTitleStr.c_str();
+        string newTaskTitleStr = getTaskTitle() + ".txt";
+        const char* newTaskTitle = newTaskTitleStr.c_str();
+        rename(oldTaskTitle, newTaskTitle);
+    }
+
     void saveTaskInformation() {
         fstream writeToFile;
-        string fileName = getTaskTitle();
+        string fileName = getTaskTitle() + ".txt";
         writeToFile.open(fileName, ios::out | ios::trunc);
         string theTaskDescription = getTaskDescription();
         string theTaskPriority = getTaskPriority();

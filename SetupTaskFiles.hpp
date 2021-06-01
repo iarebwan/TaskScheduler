@@ -23,14 +23,17 @@ class ScheduleSubtask;
 
 class SetupTaskFiles : public Task {
 public:
-    void importTasks() {
+    vector<Task*> importTasks() {
         tasks.clear();
         int numOfDirectories = 0;
         bool directoryStillExists = true;
-        int checkIfTaskDirectoryExists = chdir("Tasks");
-        if(checkIfTaskDirectoryExists != 0) {
-            mkdir("Tasks");
-            chdir("Tasks");
+        if(bootUpCompletedFlag == 0) {
+            int checkIfTaskDirectoryExists = chdir("Tasks");
+            if (checkIfTaskDirectoryExists != 0) {
+                mkdir("Tasks");
+                chdir("Tasks");
+            }
+            bootUpCompletedFlag = 1;
         }
         const fs::path pathToShow(fs::current_path());
         for(const auto& content : fs::directory_iterator(pathToShow)) {
@@ -172,6 +175,7 @@ public:
             numberOfIndents = 1;
             firstLayerDirectorySubtaskDisplayFlag = 0;
         }*/
+        return tasks;
     }
 
     string openAndReadTaskInformation(string taskInformation, string fileName) {
@@ -214,8 +218,29 @@ public:
         }
     }
 
-    vector<Task*> getTaskList() {
-        return tasks;
+    void switchIntoDesiredDirectory(string desiredDirectoryFirstLayerDirectory) {
+        int i;
+        for(i = 0; i < firstLayerDirectories.size(); i++) {
+            if(desiredDirectoryFirstLayerDirectory == firstLayerDirectories.at(i)) {
+                break;
+            }
+        }
+        int numOfDirectoriesToSwitch = directories.at(i)[desiredDirectoryFirstLayerDirectory];
+        for(int j = 0; j < numOfDirectoriesToSwitch; j++) {
+            if(j == 0) {
+                const char* firstLayerDirectory = desiredDirectoryFirstLayerDirectory.c_str();
+                chdir(firstLayerDirectory);
+            }
+            else {
+                for(const auto& content : fs::directory_iterator(fs::current_path())) {
+                    if(content.is_directory()) {
+                        const auto contentName = content.path().filename().string();
+                        const char* directoryToChangeInto = contentName.c_str();
+                        chdir(directoryToChangeInto);
+                    }
+                }
+            }
+        }
     }
 
     void displayTask() {}
@@ -231,26 +256,13 @@ public:
     string getTaskType() {}
     string checkTaskType() {}
     void createSchedule(string theTaskTitleStr) {
-        //string theTaskTitleStr = getTaskTitle();
         const char* theTaskTitle = theTaskTitleStr.c_str();
         mkdir(theTaskTitle);
         chdir(theTaskTitle);
     }
-    
-    void saveTaskInformation() {
-        // fstream writeToFile;
-        // string fileName = getTaskTitle();
-        // writeToFile.open(fileName, ios::out | ios::trunc);
-        // string theTaskDescription = getTaskDescription();
-        // string theTaskPriority = getTaskPriority();
-        // string theTaskDueDate = getTaskDueDate();
-        // string theTaskType = getTaskType();
-        // writeToFile << "TASK DESCRIPTION: " << theTaskDescription << endl << endl;
-        // writeToFile << "TASK PRIORITY: " << theTaskPriority << endl << endl;
-        // writeToFile << "TASK DUE DATE: " << theTaskDueDate << endl << endl;
-        // writeToFile << "TASK CLASSIFICATION: " << theTaskType << endl << endl;
-        // writeToFile.close();
-    }
+    vector<Task*> getEmbeddedListOfTasks() {}
+    void renameTaskFile(string oldTaskTitle) {}
+    void saveTaskInformation() {}
 private:
     map<string, int> directoryWithNumOfSubDirectories;
     vector<map<string, int>> directories;
