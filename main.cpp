@@ -2,6 +2,6 @@
 
 int main(){
     Menu* menu;
-    menu->printTaskMenu()
+    menu->printTaskMenu();
     TaskMenu(); 
 }

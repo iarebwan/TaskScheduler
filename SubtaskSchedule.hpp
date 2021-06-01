@@ -145,4 +145,4 @@ private:
     vector<Task*> listOfTasks;
 };
 
-#endif __SUBTASK_SCHEDULE_HPP__
+#endif //__SUBTASK_SCHEDULE_HPP__
