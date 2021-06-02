@@ -67,7 +67,6 @@ public:
              << "q - Exit Task Scheduler" << endl
              << "-------------------------------------" << endl << endl
              << "Choose an option: ";
-        //TaskMenu();
     }
 
     void printScheduleActions() {                                       //Schedule is essentially a folder in this case
@@ -83,7 +82,6 @@ public:
              << "q - Return to Task Scheduler" << endl
              << "-------------------------------------" << endl << endl
              << "Choose an option: ";
-        ScheduleActions();
     }
 
     void printTaskActions() {
@@ -98,7 +96,6 @@ public:
              << "q - Return to Task Scheduler" << endl
              << "-------------------------------------" << endl << endl
              << "Choose an option: ";
-        TaskActions();
     }
 
     void TaskMenu() {
@@ -138,7 +135,6 @@ public:
             cout << "Type in a Schedule title followed by ENTER:" << endl;
             string title;
             getline(cin.ignore(), title);
-            //setTaskTitle(title);
             theTasks.at(theTasks.size() - 1)->setTaskTitle(title);
 
             createSchedule(title);
@@ -175,7 +171,6 @@ public:
             cout << "Type in a task title followed by ENTER:" << endl;
             string title;
             getline(cin, title);
-            //setTaskTitle(title);
             theTasks.at(theTasks.size() - 1)->setTaskTitle(title);
 
             createSchedule(title);
@@ -205,7 +200,7 @@ public:
             cout << endl;
             printTaskMenu();               //return to main menu
             TaskMenu();
-        } else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE
+        } else if (input == 'd' || input == 'D') {        //INPUT D = EDIT SCHEDULE; Buggy - needs fixing
             if (theTasks.empty() == true) {
                 cout << "There are no schedules to edit." << endl;
             } else {
@@ -231,7 +226,7 @@ public:
                     printTaskMenu();
                 }
             }
-        } else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK NEEDS HELP
+        } else if (input == 'e' || input == 'E') {        //INPUT E = EDIT TASK; Buggy - needs fixing
             if (theTasks.empty() == true) {
                 cout << "There are no tasks to edit." << endl;
             } else {
@@ -269,7 +264,7 @@ public:
             printByPriority(theTasks);
             printTaskMenu();
             TaskMenu();
-        } else if (input == 'h' || input == 'H') {        //INPUT H = CLASSIFICATION DISPLAY
+        } else if (input == 'h' || input == 'H') {        //INPUT H = CLASSIFICATION DISPLAY; Buggy - needs fixing
             string classificationType;
             cout << "Enter the classification (work, personal, or academic) you want displayed on top" << endl;
             cin >> classificationType;
@@ -293,7 +288,7 @@ public:
         }
     }
 
-
+    //Buggy: needs fixing
     void ScheduleActions() {
         char input;
         string userInput = "";
@@ -413,6 +408,7 @@ public:
         }
     }
 
+    //Buggy: needs fixing
     void TaskActions() {
         char input;
         cin >> input;
@@ -478,29 +474,29 @@ public:
             // cout << "Type in a Task title followed by ENTER:" << endl;
             // string title;
             // getline(cin, title);
-            // tasks.at(getUserNumber() - 1)->setTaskTitle(title);                                          //WE WANT TO FORMAT EVERYTHING LIKE THIS
+            // theTasks.at(getUserNumber() - 1)->setTaskTitle(title);                                          //WE WANT TO FORMAT EVERYTHING LIKE THIS
 
             // cout << "Type in the new schedules priority followed by ENTER:" << endl;
             // string priority;
             // getline(cin, priority);
-            // setTaskPriority(priority);
+            // theTasks.at(getUserNumber() - 1)->setTaskPriority(priority);
 
             // cout << "Type in the new schedules description followed by ENTER:" << endl;
             // string description;
             // getline(cin, description);
-            // setTaskDescription(description);
+            // theTasks.at(getUserNumber() - 1)->setTaskDescription(description);
 
             // cout << "Type in the new schedules due date followed by ENTER:" << endl;
             // string dueDate;
             // getline(cin, dueDate);
-            // setTaskDueDate(dueDate);
+            // theTasks.at(getUserNumber() - 1)->setTaskDueDate(dueDate);
 
             // cout << "Type in the new schedules task type followed by ENTER:" << endl;
             // string taskType;
             // getline(cin, taskType);
-            // setTaskDescription(taskType);
+            // theTasks.at(getUserNumber() - 1)->setTaskDescription(taskType);
 
-            // saveTaskInformation();      //save the information
+            // theTasks.at(getUserNumber() - 1)->saveTaskInformation();      //save the information
 
             // cout << endl;
             // printTaskMenu();            //return to main menu
