@@ -44,6 +44,5 @@
  >   * Due date has to be formatted as mm/dd/year and Priority as the words "low, medium, and high".
  >   * \n is newline or "Enter" on your keyboard.
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  > * We tested our project utilizing gtest for c++. We created a task folder that holds all of the seperate unit tests for each class and tested expected user inputs and invalid user inputs. The have a seperate branch to test the strategy pattern and we made mock test files to make sure that we implemented the functions correctly. We also tested mock main.cpp cases manually where we call the menu in a main.cpp, tests its actions and its functionality, and finally carry out those functions that implement both the composite pattern and strategy pattern.
 
