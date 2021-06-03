@@ -28,12 +28,16 @@
 
  ## Screenshots
  > * This first image is a picture of the main menu that will be prompted to the user on startup.
+ > 
  ![](images/Task%20Scheduler%20Main%20Menu.PNG)
  > * This second image is an example of how displaying user tasks will look like. The indentations signify subtasks within larger tasks.
+ > 
  ![](images/Task%20Scheduler%20Display%20Tasks.PNG)
  > * This third image shows what the user will be prompted with when creating a task and/or schedule. The user input is then saved into directories and text files within the database.
+ > 
  ![](images/Task%20Scheduler%20Create%20Schedule%20and%20Task.PNG)
  > * This fourth image shows an example of how displaying tasks by certain sorting order looks like. The user will have the option to sort tasks by priority, due date, and personal classification.
+ > 
  ![](images/Task%20Scheduler%20Sorty%20By.PNG)
  ## Installation/Usage
  > Instructions on installing and running our application:
