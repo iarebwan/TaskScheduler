@@ -37,12 +37,13 @@
  ![](images/Task%20Scheduler%20Sorty%20By.PNG)
  ## Installation/Usage
  > Instructions on installing and running our application:
- > * In order to use our program, First you would run the program, you would first clone our project repository (git clone https://github.com/cs100/final-project-bwan008_jsam007_sgupt060.git) into your local machine and run it inside of your terminal.
+ > * In order to use our program, you would first clone our project repository (git clone https://github.com/cs100/final-project-bwan008_jsam007_sgupt060.git) into your local machine and change into its directory.
  > * Next you would compile the application by running the command "g++ -std=c++17 main.cpp -o main" in your terminal followed by "./main.exe" to execute it.
  > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (Please note that the Create a schedule/Create a task are buggy and cut off the first letter of all of the strings that are saved when a user enters them.)
  > * NOTES: 
  >   * Due date has to be formatted as mm/dd/year and Priority as the words "low, medium, and high".
  >   * \n is newline or "Enter" on your keyboard.
+ >   * When creating a schedule manually (a folder), make sure to create a text file within that folder with the same name as the folder, as the program requires that text file to run correctly. 
  ## Testing
  > * We tested our project utilizing gtest for c++. We created a task folder that holds all of the seperate unit tests for each class and tested expected user inputs and invalid user inputs. The have a seperate branch to test the strategy pattern and we made mock test files to make sure that we implemented the functions correctly. We also tested mock main.cpp cases manually where we call the menu in a main.cpp, tests its actions and its functionality, and finally carry out those functions that implement both the composite pattern and strategy pattern.
 
