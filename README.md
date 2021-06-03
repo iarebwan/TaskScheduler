@@ -39,7 +39,7 @@
  > Instructions on installing and running our application:
  > * In order to use our program, you would first clone our project repository (git clone https://github.com/cs100/final-project-bwan008_jsam007_sgupt060.git) into your local machine and change into its directory.
  > * Next you would compile the application by running the command "g++ -std=c++17 main.cpp -o main" in your terminal followed by "./main.exe" to execute it.
- > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (Please note that the Create a schedule/Create a task are buggy and cut off the first letter of all of the strings that are saved when a user enters them.)
+ > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (The program will only function properyly if the text files are formatted this way so this is highly encouraged).
  > * NOTES: 
  >   * Due date has to be formatted as mm/dd/year and Priority as the words "low, medium, and high".
  >   * \n is newline or "Enter" on your keyboard.
