@@ -27,7 +27,7 @@
  > * The Strategy design pattern is on the right side of the diagram. For this pattern, we have the abstract class as OrderTasks (Compositor) that has a virtual function called display(string type). The OrderTasks abstract class has three derived classes (Strategy classes) where each derived class displays the tasks in a different order. The OrderByDueDate class has a display function that displays the tasks in the order of the closest due date on the top and the farthest due date on the bottom. Similarly, the OrderByPriority class displays the tasks with high priority tasks being displayed on top, medium priority tasks displayed in the middle, and low priority tasks displayed on the bottom. The OrderByTaskType class displays the tasks by the task type (personal, work, or study) the user chooses to be displayed on top.
 
  ## Screenshots
- > * This first image is a picture of what the main menu looks like. This main menu will be prompted to the user on startup. 
+ > * This first image is a picture of the main menu that will be prompted to the user on startup.
  ![](images/Task%20Scheduler%20Main%20Menu.PNG)
  > * This second image is an example of how displaying user tasks will look like. The indentations signify subtasks within larger tasks.
  ![](images/Task%20Scheduler%20Display%20Tasks.PNG)
