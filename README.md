@@ -38,7 +38,7 @@
  > ![](images/Task%20Scheduler%20Create%20Schedule%20and%20Task.PNG)
  > * This fourth image shows an example of how displaying tasks by certain sorting order looks like. The user will have the option to sort tasks by priority, due date, and personal classification.
  > 
- > ![](images/Task%20Scheduler%20Sorty%20By.PNG)
+ > ![](images/Task%20Scheduler%20Sort%20By.PNG)
  ## Installation/Usage
  > Instructions on installing and running our application:
  > * In order to use our program, you would first clone our project repository (git clone https://github.com/cs100/final-project-bwan008_jsam007_sgupt060.git) into your local machine and change into its directory.
