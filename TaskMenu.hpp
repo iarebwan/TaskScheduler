@@ -141,7 +141,7 @@ public:
 
             cout << "Type in the new schedules priority (high, medium, or low) followed by ENTER:" << endl;
             string priority;
-            getline(cin.ignore(), priority);
+            cin >> priority;
             theTasks.at(theTasks.size() - 1)->setTaskPriority(priority);
 
             cout << "Type in the new schedules description followed by ENTER:" << endl;
@@ -151,12 +151,12 @@ public:
 
             cout << "Type in the new schedules due date (mm/dd/year) followed by ENTER:" << endl;
             string dueDate;
-            getline(cin.ignore(), dueDate);
+            cin >> dueDate;
             theTasks.at(theTasks.size() - 1)->setTaskDueDate(dueDate);
 
             cout << "Type in the new schedules task type followed by ENTER:" << endl;
             string taskType;
-            getline(cin.ignore(), taskType);
+            cin >> taskType;
             theTasks.at(theTasks.size() - 1)->setTaskType(taskType);
 
             theTasks.at(theTasks.size() - 1)->saveTaskInformation();      //save the information
@@ -170,29 +170,27 @@ public:
 
             cout << "Type in a task title followed by ENTER:" << endl;
             string title;
-            getline(cin, title);
+            getline(cin.ignore(), title);
             theTasks.at(theTasks.size() - 1)->setTaskTitle(title);
-
-            createSchedule(title);
 
             cout << "Type in the new task priority (high, medium, or low) followed by ENTER:" << endl;
             string priority;
-            getline(cin, priority);
+            cin >> priority;
             theTasks.at(theTasks.size() - 1)->setTaskPriority(priority);
 
             cout << "Type in the new task description followed by ENTER:" << endl;
             string description;
-            getline(cin, description);
+            getline(cin.ignore(), description);
             theTasks.at(theTasks.size() - 1)->setTaskDescription(description);
 
             cout << "Type in the new task due date (mm/dd/year) followed by ENTER:" << endl;
             string dueDate;
-            getline(cin, dueDate);
+            cin >> dueDate;
             theTasks.at(theTasks.size() - 1)->setTaskDueDate(dueDate);
 
-            cout << "Type in the new task task type followed by ENTER:" << endl;
+            cout << "Type in the new task type followed by ENTER:" << endl;
             string taskType;
-            getline(cin, taskType);
+            cin >> taskType;
             theTasks.at(theTasks.size() - 1)->setTaskType(taskType);
 
             theTasks.at(theTasks.size() - 1)->saveTaskInformation();      //save the information
@@ -278,10 +276,28 @@ public:
             printTaskMenu();
             TaskMenu();
         } else if (input == 'i' || input == 'I') {        //INPUT I = DELETE ALL SCHEDULES/TASKS
-            theTasks.clear();
-            printTaskMenu();
-            TaskMenu();
-            //TODO: clear database as well
+            string confirmation;
+            cout << "Are you sure you want to delete all your schedules and tasks? Enter yes or no: " << endl;
+            cin >> confirmation;
+            cout << endl;
+            while(confirmation != "yes" && confirmation != "Yes" && confirmation != "no" && confirmation != "No") {
+                cout << "Please enter only yes or no: " << endl;
+                cin >> confirmation;
+                cout << endl;
+            }
+            if(confirmation == "yes" || confirmation == "Yes") {
+                for(int i = 0; i < theTasks.size(); i++) {
+                    deleteTask(theTasks.at(i)->getTaskTitle());
+                }
+                theTasks.clear();
+                cout << "Schedules and tasks have been removed from database." << endl;
+                printTaskMenu();
+                TaskMenu();
+            }
+            else if(confirmation == "no" || confirmation == "No") {
+                printTaskMenu();
+                TaskMenu();
+            }
         } else if (input == 'q' || input == 'Q') {        //INPUT Q = QUIT PROGRAM
             cout << "See you later!" << endl;
             exit;
