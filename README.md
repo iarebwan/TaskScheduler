@@ -45,9 +45,11 @@
  > * Next you would compile the application by running the command "g++ -std=c++17 main.cpp -o main" in your terminal followed by "./main.exe" to execute it.
  > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (The program will only function properyly if the text files are formatted this way so this is highly encouraged).
  > * NOTES: 
- >   * Due date has to be formatted as mm/dd/year and Priority as the words "low, medium, and high".
+ >   * Due date has to be formatted as mm/dd/year, Priority as the words "low, medium, and high", and Classification as "personal, work, and academic". 
+ >   * Makes sure that Priority and Classification are inputted with the entire word in lower case with no extra space or character at the end. (Images of the program above may show the Classifications being displayed with an uppercase, but after debugging and improving our code, the program only works properly with lower case inputs now)
  >   * \n is newline or "Enter" on your keyboard.
  >   * When creating a schedule manually (a folder), make sure to create a text file within that folder with the same name as the folder, as the program requires that text file to run correctly. 
+ >   * 
  ## Testing
  > * We tested our project utilizing gtest for c++. We created a task folder that holds all of the seperate unit tests for each class and tested expected user inputs and invalid user inputs. The have a seperate branch to test the strategy pattern and we made mock test files to make sure that we implemented the functions correctly. We also tested mock main.cpp cases manually where we call the menu in a main.cpp, tests its actions and its functionality, and finally carry out those functions that implement both the composite pattern and strategy pattern.
 
