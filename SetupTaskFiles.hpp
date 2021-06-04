@@ -175,6 +175,19 @@ public:
             numberOfIndents = 1;
             firstLayerDirectorySubtaskDisplayFlag = 0;
         }*/
+
+        string originalDirectory = fs::current_path().stem().string();
+        if(originalDirectory != "Tasks") {
+            bool inOriginalDirectory = false;
+            while(!inOriginalDirectory) {
+                chdir("..");
+                originalDirectory = fs::current_path().stem().string();
+                if(originalDirectory == "Tasks") {
+                    inOriginalDirectory = true;
+                    break;
+                }
+            }
+        }
         return tasks;
     }
 
@@ -206,7 +219,7 @@ public:
             const auto contentNameWithoutFileExtension = contentName.substr(0, contentName.length() - 4);
             if(content.is_directory() && taskTitle == contentName) {
                 const char* fileToBeDeleted = taskTitle.c_str();
-                fs::remove(fileToBeDeleted);
+                fs::remove_all(fileToBeDeleted);
                 break;
             }
             else if(content.is_regular_file() && contentNameWithoutFileExtension == taskTitle) {
