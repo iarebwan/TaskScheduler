@@ -46,7 +46,7 @@
  > * It is highly recommended that you utilize the notepad formated as TASK TITLE: userInput\n\n, TASK PRIORITY: userInput\n\n, TASK DESCRIPTION userInput\n\n, TASK DUE DATE: userInput\n\n, TASK CLASSIFICATION: userInput\n\n (The program will only function properyly if the text files are formatted this way so this is highly encouraged).
  > * NOTES: 
  >   * Due date has to be formatted as mm/dd/year, Priority as the words "low, medium, and high", and Classification as "personal, work, and academic". 
- >   * Makes sure that Priority and Classification are inputted with the entire word in lower case with no extra space or character at the end. (Images of the program above may show the Priorities and Classifications being displayed with an uppercase, but after debugging and improving our code, the program only works properly with lower case inputs now. Everything else in the image is the same though)
+ >   * Makes sure that Priority and Classification are inputted with the entire word in lower case with no extra space or character at the end. (Images of the program above may show the Priorities and Classifications being displayed with an uppercase, but after debugging and improving our code, the program only works properly with lower case inputs now. Everything else in the image is the same though.)
  >   * \n is newline or "Enter" on your keyboard.
  >   * When creating a schedule manually (a folder), make sure to create a text file within that folder with the same name as the folder, as the program requires that text file to run correctly. 
  ## Testing
