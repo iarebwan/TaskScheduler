@@ -141,7 +141,6 @@ public:
 			listOfTasks.at(j + 1) = currentTask;
 		}
 
-
 		//display the title and due date of each task by iterating through the vector
 		//number each task as you display them (1., 2., 3., ...)
 		for (int i = 0; i < listOfTasks.size(); i++) {
@@ -149,10 +148,8 @@ public:
 			cout << listOfTasks.at(i)->getTaskDueDate();
 			cout << endl;
 		}
-
-
+		cout << endl;
 	}
-
 };
 
 #endif
