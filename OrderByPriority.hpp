@@ -45,6 +45,7 @@ public:
 		for (int i = 0; i < listOfTasks.size(); i++) {
 			cout << i + 1 << ". Title: " << listOfTasks.at(i)->getTaskTitle() << ", priority: " << listOfTasks.at(i)->getTaskPriority() << endl;
 		}
+		cout << endl;
 	}
 };
 
