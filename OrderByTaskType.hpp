@@ -40,9 +40,8 @@ public:
 		for (int i = 0; i < listOfTasks.size(); i++) {
 			cout << i + 1 << ". Title: " << listOfTasks.at(i)->getTaskTitle() << ", TaskType(classification): " << listOfTasks.at(i)->getTaskType() << endl;
 		}
-
+        cout << endl;
 	}
-
 };
 
 #endif
